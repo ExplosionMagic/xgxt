@@ -1,15 +1,18 @@
 <template>
   <div class="login-container">
     <el-card class="box-card">
-      <h2>高校学生管理系统</h2>
-      <el-form :model="form" label-width="80px">
+      <h2>高校学生工作管理系统</h2>
+      <el-form :model="form" label-width="60px">
         <el-form-item label="账号">
-          <el-input v-model="form.username" prefix-icon="User" />
+          <el-input v-model="form.account" prefix-icon="User" placeholder="学号 / 教工ID / 手机号" />
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.password" type="password" prefix-icon="Lock" />
+          <el-input v-model="form.password" type="password" prefix-icon="Lock" placeholder="请输入密码" @keyup.enter="handleLogin" />
         </el-form-item>
-        <el-button type="primary" class="btn" @click="handleLogin">登录</el-button>
+        <el-button type="primary" class="btn" @click="handleLogin">登 录</el-button>
+        <div style="text-align: right; margin-top: 15px;">
+          <el-link type="primary" @click="$router.push('/register')">学生首次使用？去注册</el-link>
+        </div>
       </el-form>
     </el-card>
   </div>
@@ -22,12 +25,18 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
 const router = useRouter()
-const form = reactive({ username: 'admin', password: '' })
+// 注意：这里将 username 改为了 account，与后端 LoginController 保持一致
+const form = reactive({ account: '', password: '' })
 
 const handleLogin = () => {
+  if (!form.account || !form.password) {
+    ElMessage.warning('请输入账号和密码')
+    return
+  }
   request.post('/login', form).then(res => {
+    // res.data 现在包含了 token, role, name, userNo
     localStorage.setItem('student-user', JSON.stringify(res.data))
-    ElMessage.success('登录成功')
+    ElMessage.success('登录成功，欢迎 ' + res.data.name)
     router.push('/')
   })
 }
