@@ -46,6 +46,26 @@ const routes = [
                 name: 'UserList',
                 component: () => import('../views/UserList.vue')
             },
+            {
+                path: 'major',
+                name: 'MajorList',
+                component: () => import('../views/MajorList.vue')
+            },
+            {
+                path: 'class',
+                name: 'ClassList',
+                component: () => import('../views/ClassList.vue')
+            },
+            {
+                path: 'elective',
+                name: 'ElectiveApproval',
+                component: () => import('../views/ElectiveApproval.vue')
+            },
+            {
+                path: 'student-audit',
+                name: 'StudentAudit',
+                component: () => import('../views/StudentAudit.vue')
+            },
         ]
     }
 ]

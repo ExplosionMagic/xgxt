@@ -26,15 +26,36 @@
           <span>学生管理</span>
         </el-menu-item>
 
+        <el-menu-item index="/user" v-if="user.role === 'ADMIN'">
+          <el-icon><Setting /></el-icon>
+          <span>用户管理</span>
+        </el-menu-item>
+
+        <el-menu-item index="/major" v-if="user.role === 'ADMIN'">
+          <el-icon><Collection /></el-icon>
+          <span>专业管理</span>
+        </el-menu-item>
+
         <el-menu-item index="/course" v-if="user.role === 'ADMIN' || user.role === 'TEACHER'">
           <el-icon><Reading /></el-icon>
           <span>课程管理</span>
         </el-menu-item>
 
-        <el-menu-item index="/user" v-if="user.role === 'ADMIN'">
-          <el-icon><Setting /></el-icon>
-          <span>用户管理 (管理员)</span>
+        <el-menu-item index="/class" v-if="user.role === 'ADMIN'">
+          <el-icon><OfficeBuilding /></el-icon>
+          <span>班级管理</span>
         </el-menu-item>
+
+        <el-menu-item index="/elective" v-if="user.role === 'ADMIN' || user.role === 'TEACHER'">
+          <el-icon><Checked /></el-icon>
+          <span>选修审核</span>
+        </el-menu-item>
+
+        <el-menu-item index="/student-audit" v-if="user.role === 'ADMIN'">
+          <el-icon><Stamp /></el-icon>
+          <span>新生审核</span>
+        </el-menu-item>
+
       </el-menu>
     </el-aside>
 

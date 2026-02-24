@@ -23,16 +23,6 @@
           <el-input v-model="form.confirmPassword" type="password" placeholder="请再次输入密码"/>
         </el-form-item>
 
-        <el-divider content-position="left">学籍信息 (选填)</el-divider>
-        <el-form-item label="专业">
-          <el-input v-model="form.major" placeholder="例如：计算机科学与技术"/>
-        </el-form-item>
-        <el-form-item label="年级">
-          <el-input v-model="form.grade" placeholder="例如：2023级"/>
-        </el-form-item>
-        <el-form-item label="班级">
-          <el-input v-model="form.className" placeholder="例如：计科1班"/>
-        </el-form-item>
         <el-form-item label="联系地址">
           <el-input v-model="form.address" placeholder="例如：XX校区X栋XXX室"/>
         </el-form-item>
@@ -47,7 +37,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import request from '../utils/request'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -55,25 +45,43 @@ import { ElMessage } from 'element-plus'
 const router = useRouter()
 const form = reactive({
   name: '', gender: '男', phone: '', password: '', confirmPassword: '',
-  major: '', grade: '', className: '', address: '', role: 'STUDENT' // 默认强制为学生
+  major: '', className: '', grade: '', address: '', role: 'STUDENT'
 })
 
+// 字典数据
+const majorList = ref([])
+const allClassList = ref([])
+const classList = ref([]) // 联动过滤后的班级列表
+
+const loadDicts = async () => {
+  const majorRes = await request.get('/major/list')
+  majorList.value = majorRes.data
+  const classRes = await request.get('/class_info/list')
+  allClassList.value = classRes.data
+}
+
+// 切换专业时，清空班级并重新过滤
+const handleMajorChange = (majorName) => {
+  form.className = ''
+  classList.value = allClassList.value.filter(c => c.majorName === majorName)
+}
+
 const handleRegister = () => {
-  // 简单前端校验
-  if (!form.name || !form.gender || !form.phone || !form.password) {
-    ElMessage.warning('请填写所有必填项！')
+  if (!form.name || !form.phone || !form.password) {
+    ElMessage.warning('请将必填项填写完整！')
     return
   }
   if (form.password !== form.confirmPassword) {
     ElMessage.error('两次输入的密码不一致！')
     return
   }
-  if (form.phone.length !== 11) {
-    ElMessage.warning('请输入11位有效的手机号码')
-    return
+
+  // 自动根据选中的班级，找到对应的年级赋给 form.grade
+  const selectedClass = allClassList.value.find(c => c.className === form.className)
+  if (selectedClass) {
+    form.grade = selectedClass.grade
   }
 
-  // 构造请求数据 (剔除不需要传给后端的确认密码)
   const submitData = { ...form }
   delete submitData.confirmPassword
 
@@ -82,6 +90,10 @@ const handleRegister = () => {
     router.push('/login')
   })
 }
+
+onMounted(() => {
+  loadDicts()
+})
 </script>
 
 <style scoped>

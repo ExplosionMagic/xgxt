@@ -67,8 +67,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 3. 确定角色前缀
+        // ... (在 register 方法的中间部分)
         if (!StringUtils.hasText(user.getRole())) {
             user.setRole("STUDENT"); // 默认学生
+        }
+
+        // 学生注册后状态为待完善(0)，教师/管理员直接通过(2)
+        if ("STUDENT".equals(user.getRole())) {
+            user.setAuditStatus(0);
+        } else {
+            user.setAuditStatus(2);
         }
         String prefix = "";
         switch (user.getRole()) {

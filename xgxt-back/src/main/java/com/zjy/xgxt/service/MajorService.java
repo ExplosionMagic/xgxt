@@ -1,7 +1,6 @@
 package com.zjy.xgxt.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zjy.xgxt.entity.Score;
+import com.zjy.xgxt.entity.Major;
 
-public interface ScoreService extends IService<Score> {
-}
+public interface MajorService extends IService<Major> {}

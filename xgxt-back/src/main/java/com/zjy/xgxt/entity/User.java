@@ -22,4 +22,5 @@ public class User {
     private String className;  // 班级
     private String address;    // 联系地址
     private Integer status;    // 状态：1正常，0停用
+    private Integer auditStatus; // 学籍审核状态
 }
