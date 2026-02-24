@@ -19,11 +19,17 @@ public class CourseController {
     private CourseService courseService;
 
     // 获取所有课程 (支持按课程名模糊搜索)
+// 获取课程列表 (支持按课程名、专业名模糊/精确搜索)
     @GetMapping("/list")
-    public Result<List<Course>> list(@RequestParam(required = false) String courseName) {
+    public Result<List<Course>> list(@RequestParam(required = false) String courseName,
+                                     @RequestParam(required = false) String majorName) {
         LambdaQueryWrapper<Course> wrapper = new LambdaQueryWrapper<>();
         if (StringUtils.hasText(courseName)) {
             wrapper.like(Course::getCourseName, courseName);
+        }
+        // 新增：按专业筛选课程
+        if (StringUtils.hasText(majorName)) {
+            wrapper.eq(Course::getMajorName, majorName);
         }
         wrapper.orderByDesc(Course::getId);
         return Result.success(courseService.list(wrapper));

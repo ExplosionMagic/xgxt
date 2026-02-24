@@ -48,7 +48,10 @@
 
         <el-tab-pane label="修改个人信息" name="edit">
           <el-form :model="editForm" label-width="100px" style="max-width: 500px; margin-top: 30px;">
-            <el-form-item label="学号/工号">
+            <el-form-item label="学号" v-if="userInfo.role == 'STUDENT'">
+              <el-input v-model="editForm.userNo" disabled />
+            </el-form-item>
+            <el-form-item label="教工ID" v-if="userInfo.role !== 'STUDENT'">
               <el-input v-model="editForm.userNo" disabled />
             </el-form-item>
             <el-form-item label="姓名">
@@ -68,13 +71,18 @@
 
         <el-tab-pane label="修改密码" name="password">
           <el-form :model="pwdForm" label-width="100px" style="max-width: 400px; margin-top: 30px;">
-            <el-alert title="密码修改后下次登录生效，请妥善保管新密码。" type="warning" show-icon style="margin-bottom: 20px;" :closable="false" />
+            <el-alert title="修改成功后将强制退出，需要使用新密码重新登录。" type="warning" show-icon style="margin-bottom: 20px;" :closable="false" />
+
+            <el-form-item label="原密码" required>
+              <el-input v-model="pwdForm.oldPassword" type="password" placeholder="请输入当前密码" show-password />
+            </el-form-item>
             <el-form-item label="新密码" required>
-              <el-input v-model="pwdForm.newPassword" type="password" placeholder="请输入新密码" show-password />
+              <el-input v-model="pwdForm.newPassword" type="password" placeholder="请输入新密码 (不少于6位)" show-password />
             </el-form-item>
             <el-form-item label="确认密码" required>
               <el-input v-model="pwdForm.confirmPassword" type="password" placeholder="请再次输入新密码" show-password />
             </el-form-item>
+
             <el-form-item>
               <el-button type="danger" @click="savePassword">确认修改密码</el-button>
             </el-form-item>
@@ -91,13 +99,15 @@
 import { ref, reactive, onMounted } from 'vue'
 import request from '../utils/request'
 import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 // 页签与用户信息状态
+const router = useRouter() // 引入路由用于跳转
 const activeName = ref('info')
 const currentUser = JSON.parse(localStorage.getItem('student-user') || '{}')
 const userInfo = ref({ auditStatus: 2 }) // 默认给2防止白屏闪烁
 const editForm = ref({})
-const pwdForm = reactive({ newPassword: '', confirmPassword: '' })
+const pwdForm = reactive({ oldPassword: '', newPassword: '', confirmPassword: '' })
 
 // 新手引导用到的变量
 const majorList = ref([])
@@ -165,21 +175,33 @@ const saveProfile = () => {
 
 // 4. 保存新密码
 const savePassword = () => {
-  if (!pwdForm.newPassword || !pwdForm.confirmPassword) {
+  if (!pwdForm.oldPassword || !pwdForm.newPassword || !pwdForm.confirmPassword) {
     ElMessage.warning('请完整填写密码信息')
     return
   }
-  if (pwdForm.newPassword !== pwdForm.confirmPassword) {
-    ElMessage.error('两次输入的密码不一致！')
+  if (pwdForm.newPassword.length < 6) {
+    ElMessage.warning('新密码长度不能少于6位')
     return
   }
-  request.put('/user/profile', {
+  if (pwdForm.newPassword === pwdForm.oldPassword) {
+    ElMessage.warning('新密码不能与原密码相同！')
+    return
+  }
+  if (pwdForm.newPassword !== pwdForm.confirmPassword) {
+    ElMessage.error('两次输入的新密码不一致！')
+    return
+  }
+
+  request.put('/user/password', {
     id: userInfo.value.id,
-    password: pwdForm.newPassword
+    oldPassword: pwdForm.oldPassword,
+    newPassword: pwdForm.newPassword
   }).then(res => {
-    ElMessage.success('密码修改成功')
-    pwdForm.newPassword = ''
-    pwdForm.confirmPassword = ''
+    // 假设你的拦截器已经在错误时拦截了，走到这里代表成功
+    ElMessage.success('密码修改成功，请重新登录')
+    // 强制登出
+    localStorage.removeItem('student-user')
+    router.push('/login')
   })
 }
 

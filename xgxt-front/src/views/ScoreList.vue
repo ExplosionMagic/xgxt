@@ -104,11 +104,27 @@ const courseList = ref([])
 const selectedCourseId = ref(null)
 
 const openSelectCourseDialog = () => {
-  // 拉取所有可用课程
-  request.get('/course/list').then(res => {
-    courseList.value = res.data
-    selectedCourseId.value = null
-    courseDialogVisible.value = true
+  // 由于刚分班的学生 localStorage 里可能没有最新 major
+  // 为了绝对准确，我们先去查一下学生最新的个人信息
+  request.get(`/user/info/${user.userNo}`).then(userRes => {
+    const studentMajor = userRes.data.major;
+
+    if (!studentMajor) {
+      ElMessage.warning('您尚未分配专业，无法选课');
+      return;
+    }
+
+    // 然后带着该学生的专业去请求课程列表
+    request.get('/course/list', { params: { majorName: studentMajor } }).then(res => {
+      courseList.value = res.data
+
+      if (courseList.value.length === 0) {
+        ElMessage.info('当前专业暂无可修课程');
+      }
+
+      selectedCourseId.value = null
+      courseDialogVisible.value = true
+    })
   })
 }
 

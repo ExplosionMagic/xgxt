@@ -16,12 +16,17 @@
           <span>个人中心</span>
         </el-menu-item>
 
-        <el-menu-item index="/score">
+        <el-menu-item index="/score" v-if="user.role === 'STUDENT'">
           <el-icon><DataLine /></el-icon>
           <span>成绩查询</span>
         </el-menu-item>
 
-        <el-menu-item index="/student" v-if="user.role === 'ADMIN' || user.role === 'TEACHER'">
+        <el-menu-item index="/score" v-if="user.role !== 'STUDENT'">
+          <el-icon><DataLine /></el-icon>
+          <span>成绩管理</span>
+        </el-menu-item>
+
+        <el-menu-item index="/student" v-if="user.role === 'ADMIN'">
           <el-icon><Avatar /></el-icon>
           <span>学生管理</span>
         </el-menu-item>
@@ -36,7 +41,7 @@
           <span>专业管理</span>
         </el-menu-item>
 
-        <el-menu-item index="/course" v-if="user.role === 'ADMIN' || user.role === 'TEACHER'">
+        <el-menu-item index="/course" v-if="user.role === 'ADMIN'">
           <el-icon><Reading /></el-icon>
           <span>课程管理</span>
         </el-menu-item>

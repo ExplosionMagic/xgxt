@@ -56,7 +56,7 @@
           <el-input v-model="form.password" type="password" placeholder="不填则不修改" />
         </el-form-item>
 
-        <template v-if="form.role !== 'ADMIN'">
+        <template v-if="form.role == 'STUDENT'">
           <el-form-item label="专业">
             <el-select v-model="form.major" placeholder="选择专业" style="width: 100%;" @change="handleMajorChange">
               <el-option v-for="item in majorList" :key="item.id" :label="item.majorName" :value="item.majorName" />

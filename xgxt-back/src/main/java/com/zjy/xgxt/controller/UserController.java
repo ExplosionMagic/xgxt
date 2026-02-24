@@ -7,7 +7,9 @@ import com.zjy.xgxt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.util.DigestUtils;
 
+import java.util.Map;
 import java.util.List;
 
 @RestController
@@ -126,4 +128,35 @@ public class UserController {
             userService.updateById(user);
             return Result.success("用户信息更新成功");
         }
+        @PutMapping("/password")
+            public Result<?> updatePassword(@RequestBody Map<String, String> params) {
+                Integer id = Integer.parseInt(params.get("id"));
+                String oldPassword = params.get("oldPassword");
+                String newPassword = params.get("newPassword");
+
+                User dbUser = userService.getById(id);
+                if (dbUser == null) {
+                    return Result.error("用户不存在");
+                }
+
+                // 1. 验证旧密码是否正确 (将前端传来的明文旧密码进行MD5加密，再与数据库比对)
+                String md5OldPassword = DigestUtils.md5DigestAsHex(oldPassword.getBytes());
+
+                // 兼容一下测试期的明文密码：如果数据库密码既不等于密文，也不等于明文，就报错
+                if (!dbUser.getPassword().equals(md5OldPassword) && !dbUser.getPassword().equals(oldPassword)) {
+                    return Result.error("原密码错误");
+                }
+
+                // 2. 验证新旧密码是否相同
+                if (oldPassword.equals(newPassword)) {
+                    return Result.error("新密码不能与原密码相同");
+                }
+
+                // 3. 将新密码MD5加密后存入数据库
+                String md5NewPassword = DigestUtils.md5DigestAsHex(newPassword.getBytes());
+                dbUser.setPassword(md5NewPassword);
+                userService.updateById(dbUser);
+
+                return Result.success("密码修改成功");
+            }
 }

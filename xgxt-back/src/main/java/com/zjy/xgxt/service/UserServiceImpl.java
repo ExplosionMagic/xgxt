@@ -1,4 +1,4 @@
-package com.zjy.xgxt.service.impl;
+package com.zjy.xgxt.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -8,6 +8,7 @@ import com.zjy.xgxt.service.UserService;
 import com.zjy.xgxt.utils.JwtUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -110,7 +111,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUserNo(generatedUserNo);
         user.setStatus(1); // 默认状态为正常
 
-        // 5. 直接保存到数据库 (不需要先保存获取ID再更新了)
+        String md5Password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+        user.setPassword(md5Password);
+
+        // 5. 直接保存到数据库
         this.save(user);
     }
 }
