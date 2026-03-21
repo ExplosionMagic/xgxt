@@ -80,6 +80,25 @@ const routes = [
                 component: () => import('../views/Home.vue'),
                 meta: { requireRoles: ['ADMIN', 'TEACHER'] }
             },
+            // 【新增】学生端：请假申请页面
+            {
+                path: '/leave-apply',
+                name: 'LeaveApply',
+                component: () => import('../views/LeaveApply.vue') // 请确保这里的路径和你的文件名完全一致
+            },
+            // 【新增】教职工/管理员端：请假审批页面
+            {
+                path: '/leave-approval',
+                name: 'LeaveApproval',
+                component: () => import('../views/LeaveApproval.vue')
+            },
+
+            {
+                path: '/announcement-manage',
+                name: 'AnnouncementManage',
+                component: () => import('../views/AnnouncementManage.vue')
+            },
+
         ]
     }
 ]

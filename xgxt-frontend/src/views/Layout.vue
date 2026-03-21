@@ -21,6 +21,12 @@
           <span>个人中心</span>
         </el-menu-item>
 
+        <el-menu-item index="/leave-apply" v-if="user.role === 'STUDENT'">
+          <el-icon><Calendar /></el-icon>
+          <span>请假申请</span>
+        </el-menu-item>
+
+
         <el-menu-item index="/score" v-if="user.role === 'STUDENT'">
           <el-icon><DataLine /></el-icon>
           <span>成绩查询</span>
@@ -65,6 +71,17 @@
           <el-icon><Setting /></el-icon>
           <span>用户管理</span>
         </el-menu-item>
+        
+        <el-menu-item index="/leave-approval" v-if="user.role !== 'STUDENT'">
+          <el-icon><List /></el-icon>
+          <span>请假审批</span>
+        </el-menu-item>
+
+        <el-menu-item index="/announcement-manage" v-if="user.role !== 'STUDENT'">
+          <el-icon><Bell /></el-icon>
+          <span>公告发布</span>
+        </el-menu-item>
+
       </el-menu>
     </el-aside>
 
