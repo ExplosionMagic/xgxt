@@ -5,22 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="451aed1a-d433-4fe9-92cf-e5e524244bc0" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/AnnouncementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/LeaveInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Announcement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/LeaveInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/AnnouncementMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/LeaveInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/AnnouncementService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/AnnouncementServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/LeaveInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/LeaveInfoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApproval.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Dashboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Timetable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/ScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/ScoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ScoreList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ScoreList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +117,7 @@
       <workItem from="1772085067632" duration="1485000" />
       <workItem from="1772698558926" duration="7437000" />
       <workItem from="1774094401606" duration="3773000" />
+      <workItem from="1774163602891" duration="10378000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

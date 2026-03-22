@@ -4,12 +4,13 @@ import Login from '../views/Login.vue'
 import Layout from '../views/Layout.vue'
 
 const routes = [
+    // 用户登录
     {
         path: '/login',
         name: 'Login',
         component: Login
     },
-    // 新增注册路由
+    // 用户注册
     {
         path: '/register',
         name: 'Register',
@@ -22,83 +23,127 @@ const routes = [
         component: Layout, // 主布局
         redirect: '/profile', // 登录后默认跳转到学生管理
         children: [
+
+            //
             {
-                path: 'student', // 注意这里不能有斜杠
+                path: 'student',
                 name: 'StudentList',
                 component: () => import('../views/StudentList.vue'),
                 meta: { requireRoles: ['ADMIN'] }
             },
+
+            //
             {
                 path: 'course',
                 name: 'CourseList',
                 component: () => import('../views/CourseList.vue'),
                 meta: { requireRoles: ['ADMIN'] }
             },
+
+            //
             {
                 path: 'score',
                 name: 'ScoreList',
                 component: () => import('../views/ScoreList.vue'),
             },
+
+            //
             {
                 path: 'profile',
                 name: 'Profile',
                 component: () => import('../views/Profile.vue'),
             },
+
+            //
             {
                 path: 'user',
                 name: 'UserList',
                 component: () => import('../views/UserList.vue'),
                 meta: { requireRoles: ['ADMIN'] }
             },
+
+            //
             {
                 path: 'major',
                 name: 'MajorList',
                 component: () => import('../views/MajorList.vue'),
                 meta: { requireRoles: ['ADMIN'] }
             },
+
+            //
             {
                 path: 'class',
                 name: 'ClassList',
                 component: () => import('../views/ClassList.vue'),
                 meta: { requireRoles: ['ADMIN'] }
             },
-            {
-                path: 'elective',
-                name: 'ElectiveApproval',
-                component: () => import('../views/ElectiveApproval.vue'),
-                meta: { requireRoles: ['ADMIN', 'TEACHER'] }
-            },
+
+            // 选课审核（已弃用）
+            // {
+            //     path: 'elective',
+            //     name: 'ElectiveApproval',
+            //     component: () => import('../views/ElectiveApproval.vue'),
+            //     meta: { requireRoles: ['ADMIN', 'TEACHER'] }
+            // },
+
+            //
             {
                 path: 'student-audit',
                 name: 'StudentAudit',
                 component: () => import('../views/StudentAudit.vue'),
                 meta: { requireRoles: ['ADMIN'] }
             },
+
+            // 首页
             {
                 path: 'home',
                 name: 'Home',
                 component: () => import('../views/Home.vue'),
-                meta: { requireRoles: ['ADMIN', 'TEACHER'] }
             },
-            // 【新增】学生端：请假申请页面
+
+            // 学生端：请假申请页
             {
                 path: '/leave-apply',
                 name: 'LeaveApply',
                 component: () => import('../views/LeaveApply.vue') // 请确保这里的路径和你的文件名完全一致
             },
-            // 【新增】教职工/管理员端：请假审批页面
+
+            // 教职工/管理员端：请假审批页
             {
                 path: '/leave-approval',
                 name: 'LeaveApproval',
-                component: () => import('../views/LeaveApproval.vue')
+                component: () => import('../views/LeaveApproval.vue'),
+                meta: { requireRoles: ['ADMIN', 'TEACHER'] }
             },
 
+            // 管理员端：公告发布页
             {
                 path: '/announcement-manage',
                 name: 'AnnouncementManage',
-                component: () => import('../views/AnnouncementManage.vue')
+                component: () => import('../views/AnnouncementManage.vue'),
+                meta: { requireRoles: ['ADMIN'] }
             },
 
+            // 课表页
+            {
+                path: '/timetable',
+                name: 'Timetable',
+                component: () => import('../views/Timetable.vue'),
+            },
+
+            // 选课
+            {
+                path: '/courseselection',
+                name: 'CourseSelection',
+                component: () => import('../views/CourseSelection.vue'),
+            },
+
+            // 数据大屏
+            {
+                path: '/dashboard',
+                name: 'Dashboard',
+                component: () => import('../views/Dashboard.vue'),
+            },
         ]
     }
 ]
