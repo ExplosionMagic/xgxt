@@ -9,11 +9,11 @@ import lombok.Data;
 @TableName("announcement")
 public class Announcement {
     @TableId(type = IdType.AUTO)
-    private Integer id;
-    private String title;
-    private String content;
-    private String targetType;  // ALL, MAJOR, CLASS
+    private Integer id;         // id
+    private String title;       // 公告标题
+    private String content;     // 公告内容
+    private String targetType;  // 可见范围：全校可见, 专业可见, 班级可见
     private String targetValue; // 具体的专业或班级名
-    private String publisher;
-    private String createTime;
+    private String publisher;   // 作者
+    private String createTime;  // 创建时间
 }

@@ -29,7 +29,7 @@
                     </span>
                 </div>
               </div>
-              <div v-else class="empty-cell">无推荐</div>
+              <div v-else class="empty-cell"> </div>
             </td>
           </tr>
           </tbody>
@@ -112,7 +112,7 @@
         </el-table>
       </el-tab-pane>
 
-      <el-tab-pane label="课表状态" name="myTimetable">
+      <el-tab-pane label="我的课表" name="myTimetable">
         <div style="margin-bottom: 10px; text-align: right;">
           <el-button type="success" size="small" @click="loadMyTimetable">刷新课表</el-button>
         </div>
@@ -200,7 +200,7 @@ const executeSelectCourse = (course) => {
   }
 
   request.post('/score/selectCourse', { studentNo: user.userNo, courseId: course.id }).then(res => {
-    ElMessage.success(res.msg || '选课成功！')
+    ElMessage.success( '选课成功！')
     // 选课成功后，刷新所有数据，并切到选课记录
     refreshAllData()
     activeTab.value = 'records'
@@ -214,9 +214,9 @@ const handleRecommendSelect = (course) => {
 
 // --- 核心：退课执行逻辑 ---
 const handleDropCourse = (id) => {
-  ElMessageBox.confirm('确定要退选这门课吗？', '退课确认', { type: 'warning', confirmButtonText: '退课', cancelButtonText: '再想想' }).then(() => {
+  ElMessageBox.confirm('确定要退选这门课吗？', '确认退课', { type: 'warning', confirmButtonText: '退课', cancelButtonText: '取消' }).then(() => {
     request.delete(`/score/${id}`).then(res => {
-      ElMessage.success(res.msg || '退课成功')
+      ElMessage.success('退课成功')
       refreshAllData() // 退课后同步刷新所有数据
     })
   })

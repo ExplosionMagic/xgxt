@@ -1,15 +1,15 @@
 package com.zjy.xgxt.entity;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("class_info")
-public class ClassInfo {
+@TableName("grade_info")
+public class GradeInfo {
     @TableId(type = IdType.AUTO)
     private Integer id;         // id
-    private String className;   // 班级名称
-    private String grade;       // 年级
-    private String majorName;   // 专业名称
+    private String gradeName;   // 年级名称
+    private String createTime;  // 创建时间
 }

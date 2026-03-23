@@ -1,15 +1,19 @@
 <template>
   <div>
-    <div style="margin-bottom: 20px;">
-      <el-input v-model="searchName" placeholder="按专业名称搜索" style="width: 200px; margin-right: 10px;" />
+    <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+      <el-input v-model="searchName" placeholder="按年级名称搜索" style="width: 200px;" clearable />
       <el-button type="primary" @click="loadData">搜索</el-button>
-      <el-button type="success" @click="handleAdd">新增专业</el-button>
+      <el-button type="success" @click="handleAdd">新增年级</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe fit style="width: 100%">
-      <el-table-column prop="id" label="ID" width="80" />
-      <el-table-column prop="majorName" label="专业名称" min-width="120" />
-      <el-table-column prop="college" label="所属学院" min-width="120" />
+    <el-table :data="tableData" border stripe style="width: 100%; max-width: 800px;">
+      <el-table-column prop="id" label="ID" width="80" align="center" />
+      <el-table-column prop="gradeName" label="年级名称" align="center">
+        <template #default="scope">
+          <el-tag size="large" type="primary">{{ scope.row.gradeName }}</el-tag>
+        </template>
+      </el-table-column>
+<!--      <el-table-column prop="createTime" label="创建时间" align="center" />-->
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
@@ -18,13 +22,10 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog v-model="dialogVisible" :title="form.id ? '编辑专业' : '新增专业'" width="30%">
-      <el-form :model="form" label-width="80px">
-        <el-form-item label="专业名称" required>
-          <el-input v-model="form.majorName" placeholder="例如：软件工程" />
-        </el-form-item>
-        <el-form-item label="所属学院">
-          <el-input v-model="form.college" placeholder="例如：计算机学院" />
+    <el-dialog v-model="dialogVisible" :title="form.id ? '编辑年级' : '新增年级'" width="400px">
+      <el-form :model="form" label-width="80px" @submit.prevent>
+        <el-form-item label="年级名称" required>
+          <el-input v-model="form.gradeName" placeholder="例如：2024级" @keyup.enter="save" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -46,7 +47,7 @@ const dialogVisible = ref(false)
 const form = ref({})
 
 const loadData = () => {
-  request.get('/major/list', { params: { majorName: searchName.value } }).then(res => {
+  request.get('/grade/list', { params: { gradeName: searchName.value } }).then(res => {
     tableData.value = res.data
   })
 }
@@ -62,12 +63,12 @@ const handleEdit = (row) => {
 }
 
 const save = () => {
-  if (!form.value.majorName) {
-    ElMessage.warning('专业名称不能为空')
+  if (!form.value.gradeName) {
+    ElMessage.warning('请输入年级名称')
     return
   }
   const method = form.value.id ? 'put' : 'post'
-  request[method]('/major', form.value).then(res => {
+  request[method]('/grade', form.value).then(res => {
     ElMessage.success('保存成功')
     dialogVisible.value = false
     loadData()
@@ -75,8 +76,8 @@ const save = () => {
 }
 
 const handleDelete = (id) => {
-  ElMessageBox.confirm('确定要删除这个专业吗？', '提示', { type: 'warning', confirmButtonText: '确定', cancelButtonText: '取消' }).then(() => {
-    request.delete(`/major/${id}`).then(res => {
+  ElMessageBox.confirm('确定要删除此年级吗？请确保没有关联的班级或课程。', '警告', { type: 'warning', confirmButtonText: '确认', cancelButtonText: '取消' }).then(() => {
+    request.delete(`/grade/${id}`).then(res => {
       ElMessage.success('删除成功')
       loadData()
     })

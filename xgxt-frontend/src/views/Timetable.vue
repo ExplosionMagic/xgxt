@@ -146,7 +146,7 @@ const handleResubmit = (row) => {
 
 // 6. 退课 / 撤销
 const handleDropCourse = (id) => {
-  ElMessageBox.confirm('确定要退选这门课或撤销申请吗？', '提示', { type: 'warning' }).then(() => {
+  ElMessageBox.confirm('确定要退选这门课或撤销申请吗？', '提示', { type: 'warning', confirmButtonText: '确定', cancelButtonText: '取消'}).then(() => {
     request.delete(`/score/${id}`).then(res => {
       ElMessage.success('操作成功')
       loadMyRecords()

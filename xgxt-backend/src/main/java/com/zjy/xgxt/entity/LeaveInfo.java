@@ -14,7 +14,7 @@ public class LeaveInfo {
     private String studentNo;   // 学号
     private String studentName; // 学生姓名
     private String reason;      // 请假事由
-    private String startTime;   // 开始时间 (可以使用 yyyy-MM-dd HH:mm 格式字符串)
+    private String startTime;   // 开始时间
     private String endTime;     // 结束时间
 
     /**

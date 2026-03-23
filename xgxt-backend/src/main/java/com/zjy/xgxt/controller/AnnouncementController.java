@@ -43,28 +43,27 @@ public class AnnouncementController {
             @RequestParam(required = false) String major,
             @RequestParam(required = false) String className) {
 
-        QueryWrapper<Announcement> wrapper = new QueryWrapper<>();
+        // 使用 LambdaQueryWrapper 避免字段名拼写错误
+        com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<Announcement> wrapper =
+                new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<>();
 
-        // 使用 SQL 的 OR 逻辑来过滤权限
+        // 生成的 SQL 逻辑： AND ( target_type = 'ALL' OR (target_type = 'MAJOR' AND target_value = ?) OR (target_type = 'CLASS' AND target_value = ?) )
         wrapper.and(w -> {
-            w.eq("target_type", "ALL"); // 所有人都能看全校通知
+            // 默认所有人都能看全校通知
+            w.eq(Announcement::getTargetType, "ALL");
 
-            if ("STUDENT".equals(role)) {
-                if (StringUtils.hasText(major)) {
-                    w.or(orWrap -> orWrap.eq("target_type", "MAJOR").eq("target_value", major));
-                }
-                if (StringUtils.hasText(className)) {
-                    w.or(orWrap -> orWrap.eq("target_type", "CLASS").eq("target_value", className));
-                }
-            } else if ("TEACHER".equals(role)) {
-                // 假设教师也能看自己所在专业的通知
-                if (StringUtils.hasText(major)) {
-                    w.or(orWrap -> orWrap.eq("target_type", "MAJOR").eq("target_value", major));
-                }
+            // 如果传了专业，追加 OR 条件
+            if (org.springframework.util.StringUtils.hasText(major)) {
+                w.or(orWrap -> orWrap.eq(Announcement::getTargetType, "MAJOR").eq(Announcement::getTargetValue, major));
+            }
+
+            // 如果传了班级，追加 OR 条件
+            if (org.springframework.util.StringUtils.hasText(className)) {
+                w.or(orWrap -> orWrap.eq(Announcement::getTargetType, "CLASS").eq(Announcement::getTargetValue, className));
             }
         });
 
-        wrapper.orderByDesc("id");
+        wrapper.orderByDesc(Announcement::getId);
         return Result.success(announcementService.list(wrapper));
     }
 

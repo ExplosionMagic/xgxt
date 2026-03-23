@@ -65,12 +65,9 @@
               <el-radio label="选修">选修</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="年级" required>
+          <el-form-item label="推荐年级" required>
             <el-select v-model="form.targetGrade" placeholder="选择年级" style="width: 100%;">
-              <el-option label="2023级" value="2023级" />
-              <el-option label="2024级" value="2024级" />
-              <el-option label="2025级" value="2025级" />
-              <el-option label="2026级" value="2026级" />
+              <el-option v-for="g in gradeList" :key="g.id" :label="g.gradeName" :value="g.gradeName" />
             </el-select>
           </el-form-item>
         </div>
@@ -139,6 +136,7 @@ const teacherList = ref([])
 const majorList = ref([])
 const dialogVisible = ref(false)
 const form = ref({})
+const gradeList = ref([]) // 存放动态年级数据
 
 const loadData = () => {
   request.get('/course/list', {
@@ -153,6 +151,8 @@ const loadDicts = async () => {
   teacherList.value = tRes.data.filter(u => u.role === 'TEACHER')
   const mRes = await request.get('/major/list')
   majorList.value = mRes.data
+  const gRes = await request.get('/grade/list')
+  gradeList.value = gRes.data
 }
 
 const handleAdd = () => {
@@ -190,7 +190,7 @@ const save = () => {
 }
 
 const handleDelete = (id) => {
-  ElMessageBox.confirm('确定要删除这门课程吗？', '警告', { type: 'warning' }).then(() => {
+  ElMessageBox.confirm('确定要删除这门课程吗？', '警告', { type: 'warning', confirmButtonText: '确定', cancelButtonText: '取消'}).then(() => {
     request.delete(`/course/${id}`).then(res => {
       ElMessage.success('删除成功')
       loadData()

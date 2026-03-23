@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 public class Score {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String studentNo; // 学号
-    private Integer courseId; // 课程ID
-    private BigDecimal score; // 成绩
-    private Integer status; // 选修课程状态
+    private String studentNo;   // 学号
+    private Integer courseId;   // 课程ID
+    private BigDecimal score;   // 成绩
+    private Integer status;     // 选修课程状态
 }

@@ -39,8 +39,7 @@ const loadData = () => {
 
 const handleAudit = (row, status) => {
   const actionText = status === 1 ? '同意' : '驳回'
-  ElMessageBox.confirm(`确定要 ${actionText} 该学生的请假申请吗？`, '审批确认', {
-    confirmButtonText: '确定', cancelButtonText: '取消', type: status === 1 ? 'success' : 'warning'
+  ElMessageBox.confirm(`确定要${actionText}该学生的请假申请吗？`, '审批确认', { confirmButtonText: '确定', cancelButtonText: '取消', type: status === 1 ? 'success' : 'warning'
   }).then(() => {
     request.put('/leave/audit', {
       id: row.id,

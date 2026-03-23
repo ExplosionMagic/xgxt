@@ -89,7 +89,7 @@ const submitApply = () => {
 }
 
 const handleCancel = (id) => {
-  ElMessageBox.confirm('确定要撤销这条请假申请吗？', '提示', { type: 'warning' }).then(() => {
+  ElMessageBox.confirm('确定要撤销这条请假申请吗？', '提示', { type: 'warning', confirmButtonText: '确认', cancelButtonText: '取消' }).then(() => {
     request.delete(`/leave/${id}`).then(res => {
       ElMessage.success('撤销成功')
       loadData()

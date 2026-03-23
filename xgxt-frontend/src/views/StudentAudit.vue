@@ -38,8 +38,7 @@ const loadData = () => {
 
 const handleAudit = (id, status) => {
   const actionText = status === 2 ? '通过并自动分班' : '驳回'
-  ElMessageBox.confirm(`确定要 ${actionText} 吗？`, '提示', {
-    type: status === 2 ? 'success' : 'warning'
+  ElMessageBox.confirm(`确定要${actionText}吗？`, '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: status === 2 ? 'success' : 'warning'
   }).then(() => {
     request.put('/student/audit', { id, auditStatus: status }).then(res => {
       // 后端通过后会返回自动分配的班级名提示

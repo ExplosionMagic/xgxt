@@ -8,7 +8,7 @@ import lombok.Data;
 @TableName("major")
 public class Major {
     @TableId(type = IdType.AUTO)
-    private Integer id;
-    private String majorName;
-    private String college;
+    private Integer id;         // id
+    private String majorName;   // 专业名称
+    private String college;     // 所属院部
 }

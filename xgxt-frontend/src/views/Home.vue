@@ -34,7 +34,7 @@
             <div style="font-weight: bold; font-size: 16px; display: flex; justify-content: space-between; align-items: center;">
               <div>
                 <el-icon color="#409EFF" style="margin-right: 5px;"><Grid /></el-icon>
-                我的本周课表
+                我的课表
                 <span v-if="user.role !== 'ADMIN'" style="margin-left: 10px; color: #999; font-size: 12px; font-weight: normal;">
                   {{ user.role === 'STUDENT' ? '仅显示审核通过的课程' : '课程安排' }}
                 </span>
@@ -105,10 +105,32 @@ const noticeDialogVisible = ref(false)
 const currentNotice = ref({})
 
 const loadAnnouncements = () => {
-  request.get('/announcement/my', {
-    params: { role: user.role, major: user.major, className: user.className }
-  }).then(res => {
-    announcements.value = res.data
+  // 如果是管理员，直接查全部列表即可
+  if (user.role === 'ADMIN') {
+    request.get('/announcement/list').then(res => {
+      announcements.value = res.data
+    })
+    return
+  }
+
+  // 如果是老师或学生，先实时获取其最新的个人信息（确保能拿到准确的 majorName 和 className）
+  request.get(`/user/info/${user.userNo}`).then(userRes => {
+    const userInfo = userRes.data || {}
+
+    // 注意：这里的字段名要和后端 User 实体类对应，通常是 majorName 或 major
+    const actualMajor = userInfo.majorName || userInfo.major
+    const actualClass = userInfo.className
+
+    // 拿到准确参数后，再去请求公告
+    request.get('/announcement/my', {
+      params: {
+        role: user.role,
+        major: actualMajor,
+        className: actualClass
+      }
+    }).then(res => {
+      announcements.value = res.data
+    })
   })
 }
 

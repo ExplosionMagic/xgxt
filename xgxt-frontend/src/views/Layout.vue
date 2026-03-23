@@ -31,10 +31,10 @@
           <span>个人中心</span>
         </el-menu-item>
 
-        <el-menu-item index="/timetable" v-if="user.role === 'STUDENT' || user.role === 'TEACHER'">
-          <el-icon><Grid /></el-icon>
-          <span>我的课表</span>
-        </el-menu-item>
+<!--        <el-menu-item index="/timetable" v-if="user.role === 'STUDENT' || user.role === 'TEACHER'">-->
+<!--          <el-icon><Grid /></el-icon>-->
+<!--          <span>我的课表</span>-->
+<!--        </el-menu-item>-->
 
         <el-menu-item index="/courseselection" v-if="user.role === 'STUDENT'">
           <el-icon><Grid /></el-icon>
@@ -69,6 +69,11 @@
         <el-menu-item index="/major" v-if="user.role === 'ADMIN'">
           <el-icon><Collection /></el-icon>
           <span>专业管理</span>
+        </el-menu-item>
+
+        <el-menu-item index="/grade" v-if="user.role === 'ADMIN'">
+          <el-icon><Flag /></el-icon>
+          <span>年级管理</span>
         </el-menu-item>
 
         <el-menu-item index="/class" v-if="user.role === 'ADMIN'">

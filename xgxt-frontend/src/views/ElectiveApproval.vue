@@ -47,8 +47,7 @@ const loadData = () => {
 
 const handleAudit = (id, status) => {
   const actionText = status === 1 ? '通过' : '驳回'
-  ElMessageBox.confirm(`确定要 ${actionText} 该选修申请吗？`, '审核确认', {
-    confirmButtonText: '确定', cancelButtonText: '取消', type: status === 1 ? 'success' : 'warning'
+  ElMessageBox.confirm(`确定要${actionText}该选修申请吗？`, '审核确认', { confirmButtonText: '确定', cancelButtonText: '取消', type: status === 1 ? 'success' : 'warning'
   }).then(() => {
     request.put('/score/audit', { id, status }).then(res => {
       ElMessage.success(`操作成功`)

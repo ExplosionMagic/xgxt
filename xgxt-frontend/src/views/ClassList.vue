@@ -26,12 +26,7 @@
         </el-form-item>
         <el-form-item label="年级" required>
           <el-select v-model="form.grade" placeholder="请选择年级" style="width: 100%;">
-            <el-option label="2021级" value="2021级" />
-            <el-option label="2022级" value="2022级" />
-            <el-option label="2023级" value="2023级" />
-            <el-option label="2024级" value="2024级" />
-            <el-option label="2025级" value="2025级" />
-            <el-option label="2026级" value="2026级" />
+            <el-option v-for="g in gradeList" :key="g.id" :label="g.gradeName" :value="g.gradeName" />
           </el-select>
         </el-form-item>
         <el-form-item label="所属专业" required>
@@ -58,6 +53,7 @@ const tableData = ref([])
 const majorList = ref([]) // 存放专业列表
 const dialogVisible = ref(false)
 const form = ref({})
+const gradeList = ref([]) // 存放动态年级数据
 
 const loadData = () => {
   request.get('/class_info/list', { params: { keyword: searchName.value } }).then(res => {
@@ -70,6 +66,11 @@ const loadMajors = () => {
   request.get('/major/list').then(res => {
     majorList.value = res.data
   })
+}
+// 加载所有班级（供下拉框使用）
+const loadDicts = async () => {
+  const gRes = await request.get('/grade/list')
+  gradeList.value = gRes.data
 }
 
 const handleAdd = () => {
@@ -96,7 +97,7 @@ const save = () => {
 }
 
 const handleDelete = (id) => {
-  ElMessageBox.confirm('确定要删除这个班级吗？', '提示', { type: 'warning' }).then(() => {
+  ElMessageBox.confirm('确定要删除这个班级吗？', '提示', { type: 'warning', confirmButtonText: '确认', cancelButtonText: '取消' }).then(() => {
     request.delete(`/class_info/${id}`).then(res => {
       ElMessage.success('删除成功')
       loadData()
@@ -106,6 +107,7 @@ const handleDelete = (id) => {
 
 onMounted(() => {
   loadData()
-  loadMajors() // 页面加载时一并获取专业列表
+  loadMajors()// 页面加载时获取专业列表
+  loadDicts()// 页面加载时获取班级列表
 })
 </script>

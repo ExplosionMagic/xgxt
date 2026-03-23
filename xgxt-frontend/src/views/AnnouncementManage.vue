@@ -8,7 +8,7 @@
 
     <el-table :data="tableData" border stripe>
       <el-table-column prop="title" label="公告标题" min-width="200" show-overflow-tooltip />
-      <el-table-column prop="targetType" label="发送范围" width="120">
+      <el-table-column prop="targetType" label="可见范围" width="120">
         <template #default="scope">
           <el-tag v-if="scope.row.targetType === 'ALL'" type="danger">全校可见</el-tag>
           <el-tag v-else-if="scope.row.targetType === 'MAJOR'" type="warning">特定专业</el-tag>
@@ -31,7 +31,7 @@
     <el-dialog v-model="dialogVisible" :title="form.id ? '编辑公告' : '发布新公告'" width="600px">
       <el-form :model="form" label-width="80px">
         <el-form-item label="公告标题" required>
-          <el-input v-model="form.title" placeholder="请输入夺人眼球的标题" />
+          <el-input v-model="form.title" placeholder="请输入标题" />
         </el-form-item>
 
         <el-form-item label="发送范围" required>
@@ -55,7 +55,7 @@
         </el-form-item>
 
         <el-form-item label="正文内容" required>
-          <el-input type="textarea" v-model="form.content" :rows="8" placeholder="支持直接粘贴格式文本，后续可替换为富文本组件" />
+          <el-input type="textarea" v-model="form.content" :rows="8" placeholder="请输入正文内容" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -125,7 +125,7 @@ const save = () => {
 }
 
 const handleDelete = (id) => {
-  ElMessageBox.confirm('确定要删除此公告吗？', '提示', { type: 'warning' }).then(() => {
+  ElMessageBox.confirm('确定要删除此公告吗？', '提示', { type: 'warning', confirmButtonText: '确定', cancelButtonText: '取消'}).then(() => {
     request.delete(`/announcement/${id}`).then(res => {
       ElMessage.success('删除成功')
       loadData()

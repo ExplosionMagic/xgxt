@@ -21,7 +21,7 @@ const routes = [
         path: '/',
         name: 'Layout',
         component: Layout, // 主布局
-        redirect: '/profile', // 登录后默认跳转到学生管理
+        redirect: '/home', // 登录后默认跳转到首页
         children: [
 
             //
@@ -124,14 +124,14 @@ const routes = [
                 meta: { requireRoles: ['ADMIN'] }
             },
 
-            // 课表页
-            {
-                path: '/timetable',
-                name: 'Timetable',
-                component: () => import('../views/Timetable.vue'),
-            },
+            // 课表页（已弃用）
+            // {
+            //     path: '/timetable',
+            //     name: 'Timetable',
+            //     component: () => import('../views/Timetable.vue'),
+            // },
 
-            // 选课
+            // 学生选课
             {
                 path: '/courseselection',
                 name: 'CourseSelection',
@@ -144,6 +144,14 @@ const routes = [
                 name: 'Dashboard',
                 component: () => import('../views/Dashboard.vue'),
             },
+
+            // 年级管理
+            {
+                path: '/grade',
+                name: 'GradeList',
+                component: () => import('../views/GradeList.vue')
+            },
+
         ]
     }
 ]
@@ -179,8 +187,8 @@ router.beforeEach((to, from, next) => {
     if (to.meta && to.meta.requireRoles) {
         if (!to.meta.requireRoles.includes(user.role)) {
             ElMessage.error('您没有权限访问该页面！')
-            // 踢回个人中心，防止踢回 '/' 导致死循环白屏
-            return next('/profile')
+            // 踢回首页，防止踢回 '/' 导致死循环白屏
+            return next('/home')
         }
     }
 
