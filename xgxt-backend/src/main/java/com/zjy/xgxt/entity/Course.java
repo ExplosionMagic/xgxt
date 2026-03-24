@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @TableName("course")
 public class Course {
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Integer id;         // id
     private String courseNo;    // 课程代码
     private String courseName;  // 课程名称
     private BigDecimal credit;  // 学分

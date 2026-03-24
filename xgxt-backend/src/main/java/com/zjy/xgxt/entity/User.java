@@ -10,8 +10,7 @@ import lombok.Data;
 public class User {
     @TableId(type = IdType.AUTO)
     private Integer id;
-
-    private String userNo;     // 学号或教工ID
+    private String userNo;     // 学号或职工ID
     private String phone;      // 手机号
     private String password;   // 密码
     private String name;       // 姓名

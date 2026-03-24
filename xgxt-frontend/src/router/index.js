@@ -152,6 +152,61 @@ const routes = [
                 component: () => import('../views/GradeList.vue')
             },
 
+            // 学院管理
+            {
+                path: '/college',
+                name: 'CollegeList',
+                component: () => import('../views/CollegeList.vue')
+            },
+
+            // 学生资助申请
+            {
+                path: '/aid-apply',
+                name: 'AidApply',
+                component: () => import('../views/AidApply.vue')
+            },
+
+            // 学生资助审批
+            {
+                path: '/aid-approval',
+                name: 'AidApproval',
+                component: () => import('../views/AidApproval.vue')
+            },
+
+            // 学生资助记录
+            {
+                path: '/aid-record',
+                name: 'AidRecord',
+                component: () => import('../views/AidRecord.vue')
+            },
+
+            // 荣誉申请
+            {
+                path: '/honor-apply',
+                name: 'HonorApply',
+                component: () => import('../views/HonorApply.vue')
+            },
+
+            // 荣誉审批
+            {
+                path: '/honor-approval',
+                name: 'HonorApproval',
+                component: () => import('../views/HonorApproval.vue')
+            },
+
+            // 荣誉记录
+            {
+                path: '/honor-record',
+                name: 'HonorRecord',
+                component: () => import('../views/HonorRecord.vue')
+            },
+
+            // 处分审批
+            {
+                path: '/discipline',
+                name: 'DisciplineManage',
+                component: () => import('../views/DisciplineManage.vue')
+            }
         ]
     }
 ]

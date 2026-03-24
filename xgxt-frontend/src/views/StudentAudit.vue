@@ -10,7 +10,7 @@
 
     <el-table :data="tableData" border stripe>
       <el-table-column prop="userNo" label="学号" width="120" />
-      <el-table-column prop="name" label="姓名" width="100" />
+      <el-table-column prop="name" label="姓名" width="140" />
       <el-table-column prop="phone" label="手机号" width="120" />
       <el-table-column prop="major" label="申请就读专业" />
       <el-table-column label="操作" width="200" align="center">
@@ -42,7 +42,7 @@ const handleAudit = (id, status) => {
   }).then(() => {
     request.put('/student/audit', { id, auditStatus: status }).then(res => {
       // 后端通过后会返回自动分配的班级名提示
-      ElMessage({ message: res.msg, type: 'success', duration: 4000 })
+      ElMessage.success('操作成功')
       loadData()
     })
   })

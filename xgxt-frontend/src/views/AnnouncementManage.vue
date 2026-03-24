@@ -8,7 +8,7 @@
 
     <el-table :data="tableData" border stripe>
       <el-table-column prop="title" label="公告标题" min-width="200" show-overflow-tooltip />
-      <el-table-column prop="targetType" label="可见范围" width="120">
+      <el-table-column prop="targetType" label="发送范围" width="120" align="center">
         <template #default="scope">
           <el-tag v-if="scope.row.targetType === 'ALL'" type="danger">全校可见</el-tag>
           <el-tag v-else-if="scope.row.targetType === 'MAJOR'" type="warning">特定专业</el-tag>

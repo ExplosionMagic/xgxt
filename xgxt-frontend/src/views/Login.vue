@@ -4,7 +4,7 @@
       <h2>高校学生工作管理系统</h2>
       <el-form :model="form" label-width="60px">
         <el-form-item label="账号">
-          <el-input v-model="form.account" prefix-icon="User" placeholder="学号 / 教工ID / 手机号" />
+          <el-input v-model="form.account" prefix-icon="User" placeholder="学号 / 职工ID / 手机号" />
         </el-form-item>
         <el-form-item label="密码">
           <el-input v-model="form.password" type="password" prefix-icon="Lock" placeholder="请输入密码" @keyup.enter="handleLogin" />

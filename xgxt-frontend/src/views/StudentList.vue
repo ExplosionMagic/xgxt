@@ -17,13 +17,20 @@
 
     <el-table :data="tableData" border stripe fit style="width: 100%">
       <el-table-column prop="userNo" label="学号" width="100" />
-      <el-table-column prop="name" label="姓名" width="100" />
+      <el-table-column prop="name" label="姓名" width="140" />
       <el-table-column prop="gender" label="性别" width="60" />
+
+      <el-table-column label="所属学院" min-width="140" show-overflow-tooltip>
+        <template #default="scope">
+          {{ getCollegeByMajor(scope.row.major) }}
+        </template>
+      </el-table-column>
+
       <el-table-column prop="major" label="专业" />
       <el-table-column prop="grade" label="年级" width="100" />
       <el-table-column prop="className" label="班级" />
       <el-table-column prop="phone" label="手机号" width="120" />
-      <el-table-column prop="status" label="账号状态" width="80">
+      <el-table-column prop="status" label="账号状态" width="90" align="center">
         <template #default="scope">
           <el-tag :type="scope.row.status === 1 ? 'success' : 'danger'">
             {{ scope.row.status === 1 ? '正常' : '停用' }}
@@ -83,6 +90,13 @@ const allClassList = ref([])
 // 存放联动过滤后的班级数据
 const searchClassList = ref([]) // 搜索栏的班级下拉选项
 const formClassList = ref([])   // 弹窗里的班级下拉选项
+
+// 根据专业名称，从 majorList 字典中匹配对应的学院
+const getCollegeByMajor = (majorName) => {
+  if (!majorName) return '--'
+  const targetMajor = majorList.value.find(m => m.majorName === majorName)
+  return targetMajor ? (targetMajor.collegeName || '--') : '--'
+}
 
 // 1. 加载字典数据 (专业和班级)
 const loadDicts = async () => {

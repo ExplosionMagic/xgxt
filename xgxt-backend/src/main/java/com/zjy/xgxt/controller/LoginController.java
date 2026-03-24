@@ -33,7 +33,7 @@ public class LoginController {
             return Result.error("账号或密码不能为空");
         }
 
-        // 1. 根据 学号/教工ID 或者 手机号 查找用户
+        // 1. 根据 学号/职工ID 或者 手机号 查找用户
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.and(w -> w.eq(User::getUserNo, account)
                 .or()

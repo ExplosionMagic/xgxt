@@ -36,7 +36,7 @@
                 <el-icon color="#409EFF" style="margin-right: 5px;"><Grid /></el-icon>
                 我的课表
                 <span v-if="user.role !== 'ADMIN'" style="margin-left: 10px; color: #999; font-size: 12px; font-weight: normal;">
-                  {{ user.role === 'STUDENT' ? '仅显示审核通过的课程' : '课程安排' }}
+<!--                  {{ user.role === 'STUDENT' ? '仅显示审核通过的课程' : '课程安排' }}-->
                 </span>
               </div>
               <el-button v-if="user.role !== 'ADMIN'" type="primary" size="small" plain @click="loadTimetable">刷新课表</el-button>

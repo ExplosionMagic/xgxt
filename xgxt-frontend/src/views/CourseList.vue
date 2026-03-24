@@ -28,7 +28,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="location" label="上课地点" width="120" show-overflow-tooltip />
-      <el-table-column prop="teacherName" label="上课教师" width="100" />
+      <el-table-column prop="teacherName" label="上课教师" width="140" />
       <el-table-column label="已选/容量" width="100" align="center">
         <template #default="scope">
           <span :style="{ color: scope.row.enrolled >= scope.row.capacity ? 'red' : '#67C23A', fontWeight: 'bold' }">
@@ -73,7 +73,7 @@
         </div>
 
         <div style="width: 48%;">
-          <el-form-item label="任课教师" required>
+          <el-form-item label="上课教师" required>
             <el-select v-model="form.teacherName" placeholder="选择教师" style="width: 100%;">
               <el-option v-for="t in teacherList" :key="t.id" :label="t.name" :value="t.name" />
             </el-select>

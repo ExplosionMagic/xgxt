@@ -5,32 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="451aed1a-d433-4fe9-92cf-e5e524244bc0" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/GradeInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/GradeInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/GradeInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/GradeInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/GradeInfoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/GradeList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/AnnouncementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/AnnouncementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Announcement.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Announcement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/ClassInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/ClassInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/CollegeInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/DisciplineController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/FinancialAidController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/HonorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/CollegeInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/DisciplinaryRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/FinancialAid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/HonorApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/CollegeInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/DisciplinaryRecordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/FinancialAidMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/HonorApplicationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/CollegeInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/CollegeInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/DisciplinaryRecordService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/DisciplinaryRecordServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/FinancialAidService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/FinancialAidServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/HonorApplicationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/HonorApplicationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApply.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApproval.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidRecord.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CollegeList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/DisciplineManage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApply.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApproval.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/MajorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/MajorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/LeaveInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/LeaveInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Major.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ClassList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ClassList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ElectiveApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ElectiveApproval.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApproval.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/MajorList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/MajorList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ScoreList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ScoreList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/StudentAudit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/StudentAudit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Timetable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Timetable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/StudentList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/StudentList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/UserList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +158,8 @@
       <workItem from="1772698558926" duration="7437000" />
       <workItem from="1774094401606" duration="3773000" />
       <workItem from="1774163602891" duration="10378000" />
-      <workItem from="1774256117990" duration="5274000" />
+      <workItem from="1774256117990" duration="8104000" />
+      <workItem from="1774319643935" duration="19785000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

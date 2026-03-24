@@ -8,10 +8,10 @@
 
     <el-table :data="tableData" border stripe fit style="width: 100%">
       <el-table-column prop="studentNo" label="学号" width="120" />
-      <el-table-column prop="studentName" label="姓名" width="100" />
-      <el-table-column prop="major" label="专业" width="150" />
+      <el-table-column prop="studentName" label="姓名" width="140" />
+<!--      <el-table-column prop="major" label="专业" width="150" />-->
       <el-table-column prop="courseName" label="课程名称" />
-      <el-table-column prop="teacherName" label="任课教师" width="120" />
+<!--      <el-table-column prop="teacherName" label="上课教师" width="120" />-->
       <el-table-column prop="credit" label="学分" width="80" align="center" />
 
       <el-table-column prop="score" label="最终成绩" width="120" align="center">

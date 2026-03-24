@@ -66,6 +66,11 @@
           <span>学生管理</span>
         </el-menu-item>
 
+        <el-menu-item index="/college" v-if="user.role === 'ADMIN'">
+          <el-icon><School /></el-icon>
+          <span>学院管理</span>
+        </el-menu-item>
+
         <el-menu-item index="/major" v-if="user.role === 'ADMIN'">
           <el-icon><Collection /></el-icon>
           <span>专业管理</span>
@@ -96,9 +101,46 @@
           <span>新生审核</span>
         </el-menu-item>
 
+        <el-menu-item index="/aid-apply" v-if="user.role === 'STUDENT'">
+          <el-icon><Money /></el-icon>
+          <span>资助申请</span>
+        </el-menu-item>
+
+        <el-menu-item index="/aid-approval" v-if="user.role !== 'STUDENT'">
+          <el-icon><Money /></el-icon>
+          <span>资助审批</span>
+        </el-menu-item>
+
+        <el-menu-item index="/aid-record" v-if="user.role !== 'STUDENT'">
+          <el-icon><Document /></el-icon>
+          <span>资助申请记录</span>
+        </el-menu-item>
+
+        <el-menu-item index="/honor-apply" v-if="user.role === 'STUDENT'">
+          <el-icon><Medal /></el-icon>
+          <span>荣誉奖励申请</span>
+        </el-menu-item>
+
+        <el-menu-item index="/honor-approval" v-if="user.role !== 'STUDENT'">
+          <el-icon><Medal /></el-icon>
+          <span>荣誉待办审批</span>
+
+        </el-menu-item>
+        <el-menu-item index="/honor-record" v-if="user.role !== 'STUDENT'">
+          <el-icon><Trophy /></el-icon>
+          <span>荣誉申报档案</span>
+        </el-menu-item>
+
         <el-menu-item index="/user" v-if="user.role === 'ADMIN'">
           <el-icon><Setting /></el-icon>
           <span>用户管理</span>
+        </el-menu-item>
+
+        <el-menu-item index="/discipline">
+          <el-icon><Warning /></el-icon>
+          <span v-if="user.role === 'STUDENT'">违纪与处分</span>
+          <span v-else-if="user.role === 'TEACHER'">违纪上报</span>
+          <span v-else>处分审批档案</span>
         </el-menu-item>
 
       </el-menu>

@@ -18,7 +18,6 @@ public class MajorController {
 
     @Autowired
     private MajorService majorService;
-
     @Autowired
     private UserService userService;
     @Autowired
@@ -29,13 +28,23 @@ public class MajorController {
     /**
      * 获取所有专业列表 (支持按专业名模糊搜索)
      */
+    /**
+     * 获取专业列表 (支持按专业名或学院名搜索)
+     */
     @GetMapping("/list")
-    public Result<List<Major>> list(@RequestParam(required = false) String majorName) {
+    public Result<List<Major>> list(
+            @RequestParam(required = false) String majorName,
+            @RequestParam(required = false) String collegeName) { // 【新增】按学院筛选
+
         LambdaQueryWrapper<Major> wrapper = new LambdaQueryWrapper<>();
+
         if (StringUtils.hasText(majorName)) {
             wrapper.like(Major::getMajorName, majorName);
         }
-        // 按ID倒序，新添加的排在前面
+        if (StringUtils.hasText(collegeName)) {
+            wrapper.eq(Major::getCollegeName, collegeName); // 【新增】学院精准匹配
+        }
+
         wrapper.orderByDesc(Major::getId);
         return Result.success(majorService.list(wrapper));
     }

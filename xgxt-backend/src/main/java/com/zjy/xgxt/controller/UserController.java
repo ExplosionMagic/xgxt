@@ -27,7 +27,7 @@ public class UserController {
     private CourseService courseService; // 【新增】注入课程服务，用于修改教师名时同步
 
     /**
-     * 1. 根据学号/教工ID获取个人详细信息 (用于个人中心)
+     * 1. 根据学号/职工ID获取个人详细信息 (用于个人中心)
      */
     @GetMapping("/info/{userNo}")
     public Result<User> getInfo(@PathVariable String userNo) {

@@ -68,7 +68,7 @@
           <el-table-column label="上课时间" width="140" align="center">
             <template #default="scope">周{{ scope.row.dayOfWeek }} 第{{ scope.row.section * 2 - 1 }}-{{ scope.row.section * 2 }}节</template>
           </el-table-column>
-          <el-table-column prop="teacherName" label="上课教师" width="90" />
+          <el-table-column prop="teacherName" label="上课教师" width="140" />
           <el-table-column prop="location" label="上课地点" width="110" show-overflow-tooltip />
           <el-table-column label="余量" width="80" align="center">
             <template #default="scope">
@@ -96,7 +96,7 @@
 
         <el-table :data="myRecords" border stripe>
           <el-table-column prop="courseName" label="课程名称" min-width="150" />
-          <el-table-column prop="teacherName" label="上课教师" width="120" />
+          <el-table-column prop="teacherName" label="上课教师" width="140" />
           <el-table-column prop="credit" label="学分" width="80" align="center" />
           <el-table-column label="选课状态" width="120" align="center">
             <template #default>

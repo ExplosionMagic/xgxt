@@ -9,17 +9,12 @@ import lombok.Data;
 @TableName("leave_info")
 public class LeaveInfo {
     @TableId(type = IdType.AUTO)
-    private Integer id;
-
+    private Integer id;         //id
     private String studentNo;   // 学号
     private String studentName; // 学生姓名
     private String reason;      // 请假事由
     private String startTime;   // 开始时间
     private String endTime;     // 结束时间
-
-    /**
-     * 状态：0-待审批，1-已同意，2-已驳回，3-已销假(可选)
-     */
-    private Integer status;
+    private Integer status;     // 状态：0待审批，1已同意，2已驳回，3已销假
     private String approver;    // 审批人姓名 (教职工或管理员)
 }

@@ -23,7 +23,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 假设前端传过来的账号（可能是学号，也可能是手机号）暂时放在了 userNo 字段里
         String account = userDTO.getUserNo();
 
-        // 1. 根据 学号/教工ID 或者 手机号 查询用户
+        // 1. 根据 学号/职工ID 或者 手机号 查询用户
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUserNo, account).or().eq(User::getPhone, account);
         User dbUser = this.getOne(wrapper);
@@ -87,7 +87,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             default: prefix = "U";
         }
 
-        // 4. 生成独立自增学号/教工ID (核心逻辑修改)
+        // 4. 生成独立自增学号/职工ID
         // 查询当前角色下，user_no 最大的那条记录
         LambdaQueryWrapper<User> maxIdQuery = new LambdaQueryWrapper<>();
         maxIdQuery.eq(User::getRole, user.getRole())

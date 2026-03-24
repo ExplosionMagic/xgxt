@@ -8,8 +8,8 @@
 
     <el-table :data="tableData" border stripe fit style="width: 100%">
       <el-table-column prop="userNo" label="账号" width="100" />
-      <el-table-column prop="name" label="姓名" width="100" />
-      <el-table-column prop="role" label="角色" width="80">
+      <el-table-column prop="name" label="姓名" width="140" />
+      <el-table-column prop="role" label="角色" width="100" align="center">
         <template #default="scope">
           <el-tag v-if="scope.row.role === 'ADMIN'" type="danger">管理员</el-tag>
           <el-tag v-else-if="scope.row.role === 'TEACHER'" type="warning">教师</el-tag>
@@ -19,7 +19,7 @@
       <el-table-column prop="phone" label="手机号" width="120" />
       <el-table-column prop="major" label="专业" />
       <el-table-column prop="className" label="班级" />
-      <el-table-column prop="status" label="账号状态" width="80">
+      <el-table-column prop="status" label="账号状态" width="90" align="center">
         <template #default="scope">
           <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="0" @change="changeStatus(scope.row)" />
         </template>

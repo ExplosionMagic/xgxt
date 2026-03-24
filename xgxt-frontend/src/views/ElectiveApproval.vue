@@ -10,7 +10,7 @@
 
     <el-table :data="tableData" border stripe>
       <el-table-column prop="studentNo" label="学号" width="120" />
-      <el-table-column prop="studentName" label="姓名" width="100" />
+      <el-table-column prop="studentName" label="姓名" width="140" />
       <el-table-column prop="major" label="专业" />
       <el-table-column prop="courseName" label="申请课程" />
       <el-table-column prop="teacherName" label="任课教师" width="100" />

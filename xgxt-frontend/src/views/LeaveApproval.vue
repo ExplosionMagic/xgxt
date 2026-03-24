@@ -8,7 +8,7 @@
 
     <el-table :data="tableData" border stripe>
       <el-table-column prop="studentNo" label="学号" width="120" />
-      <el-table-column prop="studentName" label="姓名" width="100" />
+      <el-table-column prop="studentName" label="姓名" width="140" />
       <el-table-column prop="reason" label="请假事由" min-width="150" show-overflow-tooltip />
       <el-table-column prop="startTime" label="开始时间" width="150" />
       <el-table-column prop="endTime" label="结束时间" width="150" />
