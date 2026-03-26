@@ -1,16 +1,13 @@
 <template>
   <div>
     <div style="margin-bottom: 20px;">
-      <el-tag :type="user.role === 'ADMIN' ? 'danger' : 'warning'" size="large">
-        资助申请{{ user.role === 'ADMIN' ? '终审中心' : '初审中心' }}
-      </el-tag>
       <span style="margin-left: 15px; color: #666; font-size: 14px;">
         仅显示当前需要您处理的审批单
       </span>
       <el-button type="primary" style="float: right;" @click="loadData">刷新列表</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="studentNo" label="学号" width="120" />
       <el-table-column prop="studentName" label="姓名" width="100" />
       <el-table-column prop="majorName" label="专业" width="140" />
@@ -54,12 +51,12 @@
       <template #footer>
         <el-button @click="detailVisible = false">关闭</el-button>
         <template v-if="user.role === 'TEACHER'">
-          <el-button type="danger" @click="handleTeacherAudit(currentAid, 1)">驳回申请</el-button>
-          <el-button type="success" @click="handleTeacherAudit(currentAid, 2)">批准申请</el-button>
+          <el-button type="danger" @click="handleTeacherAudit(currentAid, 1)">驳回</el-button>
+          <el-button type="success" @click="handleTeacherAudit(currentAid, 2)">批准</el-button>
         </template>
         <template v-if="user.role === 'ADMIN'">
-          <el-button type="danger" @click="handleAdminAudit(currentAid, 3)">驳回申请</el-button>
-          <el-button type="success" @click="handleAdminAudit(currentAid, 4)">批准申请</el-button>
+          <el-button type="danger" @click="handleAdminAudit(currentAid, 3)">驳回</el-button>
+          <el-button type="success" @click="handleAdminAudit(currentAid, 4)">批准</el-button>
         </template>
       </template>
     </el-dialog>
@@ -110,7 +107,7 @@ const handleTeacherAudit = (row, newStatus) => {
 
 const handleAdminAudit = (row, newStatus) => {
   const actionText = newStatus === 4 ? '终审批准并列入资助名单' : '驳回'
-  ElMessageBox.confirm(`确定要${actionText}吗？此操作不可逆。`, '终审确认', { type: newStatus === 4 ? 'success' : 'warning' }).then(() => {
+  ElMessageBox.confirm(`确定要${actionText}吗？`, '终审确认', { type: newStatus === 4 ? 'success' : 'warning' }).then(() => {
     request.put('/aid/audit/admin', {
       id: row.id,
       status: newStatus,

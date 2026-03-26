@@ -6,7 +6,7 @@
       <el-button type="success" @click="handleAdd">新增年级</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe style="width: 100%; max-width: 800px;">
+    <el-table :data="tableData" border stripe style="width: 100%; max-width: 800px;" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="id" label="ID" width="80" align="center" />
       <el-table-column prop="gradeName" label="年级名称" align="center">
         <template #default="scope">

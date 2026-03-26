@@ -1,19 +1,23 @@
 package com.zjy.xgxt.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper; // 【新增】用于更新操作
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.zjy.xgxt.common.Result;
-import com.zjy.xgxt.entity.Course; // 【新增】引入课程实体
+import com.zjy.xgxt.entity.Course;
 import com.zjy.xgxt.entity.User;
-import com.zjy.xgxt.service.CourseService; // 【新增】引入课程服务
+import com.zjy.xgxt.service.CourseService;
 import com.zjy.xgxt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.DigestUtils;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.multipart.MultipartFile;
+import com.alibaba.excel.EasyExcel;
 
 import java.util.Map;
 import java.util.List;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/user")
@@ -120,25 +124,23 @@ public class UserController {
             }
         }
 
-        // 判断：如果该用户是老师，并且管理员修改了ta的名字
+        // 判断：如果该用户是老师，并且管理员修改了老师的名字
         if ("TEACHER".equals(dbUser.getRole()) && StringUtils.hasText(user.getName()) && !user.getName().equals(dbUser.getName())) {
-            // 同步更新 Course 课程表里对应的任课教师名称
+            // 同步更新课程表里对应的任课教师名称
             LambdaUpdateWrapper<Course> courseUpdate = new LambdaUpdateWrapper<>();
             courseUpdate.eq(Course::getTeacherName, dbUser.getName()) // 找旧名字
                         .set(Course::getTeacherName, user.getName()); // 换新名字
             courseService.update(courseUpdate);
         }
 
-        // --- 核心限制逻辑 ---
-        // 无论前端有没有传，或者传了什么，强制把“用户组”和“学号”重置为数据库原来的值
         user.setRole(dbUser.getRole());
         user.setUserNo(dbUser.getUserNo());
 
-        // 如果密码框是空的（前端没填），则保留原密码不修改
+        // 如果密码框是空的，则保留原密码不修改
         if (!StringUtils.hasText(user.getPassword())) {
             user.setPassword(dbUser.getPassword());
         } else {
-            // 如果前端填了新密码，最好也加上MD5加密（可选，视你前端是否传明文而定）
+            // 如果前端填了新密码，也用MD5加密
             user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         }
 
@@ -181,4 +183,75 @@ public class UserController {
 
         return Result.success("密码修改成功");
     }
+        // 用户信息报表导入
+        @PostMapping("/import")
+        public Result<?> importUsers(MultipartFile file) {
+            try {
+                // 1. 使用EasyExcel同步读取上传的文件流
+                List<User> userList = EasyExcel.read(file.getInputStream())
+                        .head(User.class) // 以 User 类的 @ExcelProperty 注解作为表头映射
+                        .sheet()
+                        .doReadSync();
+
+                // 2. 遍历检查并入库
+                int successCount = 0;
+                for (User user : userList) {
+                    // 如果账号为空，跳过这一行
+                    if (user.getUserNo() == null || user.getUserNo().isEmpty()) {
+                        continue;
+                    }
+
+                    // 检查数据库中是否已经存在该学号/工号，防止重复插入报错
+                    long count = userService.count(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<User>()
+                            .eq(User::getUserNo, user.getUserNo()));
+
+                    if (count == 0) {
+                        // 如果 Excel 里没填密码，给个默认密码 123456
+                        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+                            user.setPassword("123456");
+                        }
+                        // 默认赋予学生角色（如果 Excel 里没填）
+                        if (user.getRole() == null || user.getRole().isEmpty()) {
+                            user.setRole("STUDENT");
+                        }
+                        // 默认启用账号
+                        user.setStatus(1);
+
+                        userService.save(user);
+                        successCount++;
+                    }
+                }
+                return Result.success("成功导入" + successCount + "条新用户数据！");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return Result.error("导入失败，请检查格式是否正确，或报表内数据有误");
+            }
+        }
+
+        // 用户信息报表导出
+        @GetMapping("/export")
+        public void export(HttpServletResponse response) throws Exception {
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setCharacterEncoding("utf-8");
+            String fileName = java.net.URLEncoder.encode("系统用户报表", "UTF-8").replaceAll("\\+", "%20");
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+            // 写入并导出
+            com.alibaba.excel.EasyExcel.write(response.getOutputStream(), User.class)
+                    .sheet("用户名单").doWrite(userService.list());
+        }
+
+        @GetMapping("/template")
+        public void downloadTemplate(HttpServletResponse response) throws Exception {
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setCharacterEncoding("utf-8");
+            // 设置模板的文件名
+            String fileName = java.net.URLEncoder.encode("用户信息导入模板", "UTF-8").replaceAll("\\+", "%20");
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+            // 传入Collections.emptyList()，导出的报表只有表头，不包含数据
+            com.alibaba.excel.EasyExcel.write(response.getOutputStream(), User.class)
+                    .sheet("导入模板")
+                    .doWrite(Collections.emptyList());
+        }
 }

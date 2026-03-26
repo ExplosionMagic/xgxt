@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.zjy.xgxt.common.Result;
 import com.zjy.xgxt.entity.HonorApplication;
 import com.zjy.xgxt.service.HonorApplicationService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -81,5 +82,16 @@ public class HonorController {
     public Result<?> delete(@PathVariable Integer id) {
         honorService.removeById(id);
         return Result.success("申请已撤销");
+    }
+
+    @GetMapping("/export")
+    public void export(HttpServletResponse response) throws Exception {
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+        String fileName = java.net.URLEncoder.encode("学生荣誉申报报表", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        // 写入并导出
+        com.alibaba.excel.EasyExcel.write(response.getOutputStream(), HonorApplication.class)
+                .sheet("荣誉档案").doWrite(honorService.list());
     }
 }

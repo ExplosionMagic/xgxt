@@ -6,7 +6,7 @@
       <el-button type="success" @click="handleAdd">发布新公告</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="title" label="公告标题" min-width="200" show-overflow-tooltip />
       <el-table-column prop="targetType" label="发送范围" width="120" align="center">
         <template #default="scope">

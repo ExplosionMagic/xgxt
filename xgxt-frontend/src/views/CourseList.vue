@@ -9,7 +9,7 @@
       <el-button type="success" @click="handleAdd">新增课程</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe fit style="width: 100%">
+    <el-table :data="tableData" border stripe fit style="width: 100%" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="courseNo" label="课程代码" width="100" />
       <el-table-column prop="courseName" label="课程名称" min-width="120" show-overflow-tooltip />
       <el-table-column prop="majorName" label="所属专业" width="150" show-overflow-tooltip />

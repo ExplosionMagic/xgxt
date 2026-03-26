@@ -5,7 +5,7 @@
       <el-button type="success" @click="loadData">刷新记录</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="reason" label="请假事由" min-width="150" show-overflow-tooltip />
       <el-table-column prop="startTime" label="开始时间" width="160" />
       <el-table-column prop="endTime" label="结束时间" width="160" />

@@ -6,7 +6,7 @@
       <el-button type="success" @click="loadData">刷新状态</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="applyTime" label="申请时间" width="160" />
       <el-table-column prop="reason" label="申请理由" min-width="200" show-overflow-tooltip />
       <el-table-column label="当前进度" width="180" align="center">
@@ -34,7 +34,7 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog v-model="dialogVisible" title="填写困难资助申请单" width="600px">
+    <el-dialog v-model="dialogVisible" title="填写资助申请单" width="600px">
       <el-form :model="form" label-width="80px">
         <el-descriptions :column="2" border style="margin-bottom: 15px;">
           <el-descriptions-item label="姓名">{{ user.name }}</el-descriptions-item>

@@ -1,12 +1,11 @@
 <template>
   <div>
     <div style="margin-bottom: 20px;">
-      <el-tag type="warning" size="large">请假审批中心</el-tag>
       <span style="margin-left: 15px; color: #666; font-size: 14px;">仅显示处于“待审批”状态的请假单</span>
       <el-button type="primary" style="float: right;" @click="loadData">刷新列表</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="studentNo" label="学号" width="120" />
       <el-table-column prop="studentName" label="姓名" width="140" />
       <el-table-column prop="reason" label="请假事由" min-width="150" show-overflow-tooltip />

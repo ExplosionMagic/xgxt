@@ -1,13 +1,16 @@
 package com.zjy.xgxt.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.zjy.xgxt.common.Result;
 import com.zjy.xgxt.entity.FinancialAid;
 import com.zjy.xgxt.service.FinancialAidService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -99,5 +102,23 @@ public class FinancialAidController {
     public Result<?> delete(@PathVariable Integer id) {
         financialAidService.removeById(id);
         return Result.success("申请已撤销");
+    }
+
+    @GetMapping("/export")
+    public void export(HttpServletResponse response) throws Exception {
+        // 1. 设置响应头信息，告诉浏览器这是一个 Excel 文件
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+        // 设置导出的文件名
+        String fileName = URLEncoder.encode("学生资助申请报表", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+        // 2. 查询全量数据 (如果你想按条件导出，可以在这里构造 LambdaQueryWrapper)
+        List<FinancialAid> list = financialAidService.list();
+
+        // 3. 将数据写入 Excel 流并输出
+        EasyExcel.write(response.getOutputStream(), FinancialAid.class)
+                .sheet("资助档案数据")
+                .doWrite(list);
     }
 }

@@ -5,49 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="451aed1a-d433-4fe9-92cf-e5e524244bc0" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/CollegeInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/DisciplineController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/FinancialAidController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/HonorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/CollegeInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/DisciplinaryRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/FinancialAid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/HonorApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/CollegeInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/DisciplinaryRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/FinancialAidMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/HonorApplicationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/CollegeInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/CollegeInfoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/DisciplinaryRecordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/DisciplinaryRecordServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/FinancialAidService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/FinancialAidServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/HonorApplicationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/HonorApplicationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApply.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApproval.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidRecord.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CollegeList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/DisciplineManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApply.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApproval.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/DisciplineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/FinancialAidController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/FinancialAidController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/HonorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/HonorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/MajorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/MajorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/LeaveInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/LeaveInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Major.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/DisciplinaryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/DisciplinaryRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/FinancialAid.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/FinancialAid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/HonorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/HonorApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApproval.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AidRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidRecord.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ClassList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ClassList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CollegeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CollegeList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/DisciplineManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/DisciplineManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ElectiveApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ElectiveApproval.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/GradeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/GradeList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApproval.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorRecord.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApproval.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/MajorList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/MajorList.vue" afterDir="false" />
@@ -96,35 +79,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.XgxtApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.XgxtApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="XgxtApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="xgxt" />
@@ -160,6 +144,8 @@
       <workItem from="1774163602891" duration="10378000" />
       <workItem from="1774256117990" duration="8104000" />
       <workItem from="1774319643935" duration="19785000" />
+      <workItem from="1774426437895" duration="12867000" />
+      <workItem from="1774487616021" duration="9002000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

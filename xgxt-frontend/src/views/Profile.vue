@@ -28,7 +28,7 @@
           <div style="margin: 20px 0;">
             <el-descriptions title="我的基本信息" :column="2" border>
               <el-descriptions-item label="学号" v-if="userInfo.role == 'STUDENT'">{{ userInfo.userNo }}</el-descriptions-item>
-              <el-descriptions-item label="职工ID" v-if="userInfo.role !== 'STUDENT'">{{ userInfo.userNo }}</el-descriptions-item>
+              <el-descriptions-item label="教职员工ID" v-if="userInfo.role !== 'STUDENT'">{{ userInfo.userNo }}</el-descriptions-item>
               <el-descriptions-item label="姓名">{{ userInfo.name }}</el-descriptions-item>
               <el-descriptions-item label="性别">{{ userInfo.gender }}</el-descriptions-item>
               <el-descriptions-item label="手机号">{{ userInfo.phone }}</el-descriptions-item>
@@ -51,7 +51,7 @@
             <el-form-item label="学号" v-if="userInfo.role == 'STUDENT'">
               <el-input v-model="editForm.userNo" disabled />
             </el-form-item>
-            <el-form-item label="职工ID" v-if="userInfo.role !== 'STUDENT'">
+            <el-form-item label="教职员工ID" v-if="userInfo.role !== 'STUDENT'">
               <el-input v-model="editForm.userNo" disabled />
             </el-form-item>
             <el-form-item label="姓名">
@@ -116,7 +116,7 @@ const selectedMajor = ref('')
 // 格式化角色标签
 const getRoleName = (role) => {
   if (role === 'ADMIN') return '超级管理员'
-  if (role === 'TEACHER') return '教职工'
+  if (role === 'TEACHER') return '教职员工'
   return '学生'
 }
 const getRoleType = (role) => {

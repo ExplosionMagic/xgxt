@@ -8,7 +8,7 @@
       <el-button type="primary" style="float: right;" @click="loadData">刷新列表</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="studentNo" label="学号" width="120" />
       <el-table-column prop="studentName" label="姓名" width="140" />
       <el-table-column prop="major" label="专业" />

@@ -10,9 +10,10 @@
         <el-option label="终审通过" :value="4" />
       </el-select>
       <el-button type="primary" @click="loadData">查询记录</el-button>
+      <el-button type="warning" @click="exportData" v-if="user.role !== 'STUDENT'">导出报表</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe size="large">
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="studentNo" label="学号" min-width="120" />
       <el-table-column prop="studentName" label="姓名" min-width="100" />
       <el-table-column prop="honorName" label="申请奖项" min-width="150" show-overflow-tooltip />
@@ -39,7 +40,7 @@
 
       <el-table-column label="操作" width="120" align="center" fixed="right">
         <template #default="scope">
-          <el-button type="primary" plain size="small" @click="openDetail(scope.row)">查看事迹</el-button>
+          <el-button type="primary" plain size="small" @click="openDetail(scope.row)">查看详情</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -56,7 +57,7 @@
         </div>
       </div>
       <template #footer>
-        <el-button type="primary" @click="detailVisible = false">关闭档案</el-button>
+        <el-button @click="detailVisible = false">关闭</el-button>
       </template>
     </el-dialog>
   </div>
@@ -82,6 +83,52 @@ const loadData = () => {
 const openDetail = (row) => {
   currentHonor.value = row
   detailVisible.value = true
+}
+
+// 终极版：绕过所有拦截器的原生 Fetch 导出
+const exportData = async () => {
+  const user = JSON.parse(localStorage.getItem('student-user') || '{}')
+
+  if (!user.token) {
+    ElMessage.error('获取登录状态失败，请重新登录')
+    return
+  }
+
+  ElMessage.info('正在请求生成报表，请稍候...')
+
+  try {
+    const response = await fetch('http://localhost:8080/api/honor/export', {
+      method: 'GET',
+      headers: {
+        'Authorization': user.token
+      }
+    })
+
+    const contentType = response.headers.get('content-type')
+    if (contentType && contentType.includes('application/json')) {
+      const errorData = await response.json()
+      ElMessage.error(errorData.msg || '导出失败，后端拒绝访问')
+      return
+    }
+
+    const blob = await response.blob()
+
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = '学生荣誉申报报表.xlsx' // 导出的文件名
+    document.body.appendChild(link)
+    link.click()
+
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
+
+    ElMessage.success('报表导出成功！')
+
+  } catch (error) {
+    console.error('导出失败详情:', error)
+    ElMessage.error('网络请求失败，请检查后端服务')
+  }
 }
 
 onMounted(() => loadData())

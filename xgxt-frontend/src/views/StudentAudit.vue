@@ -1,14 +1,13 @@
 <template>
   <div>
     <div style="margin-bottom: 20px;">
-      <el-tag type="primary" size="large">新生学籍审核</el-tag>
       <span style="margin-left: 15px; color: #666; font-size: 14px;">
         审核通过后，系统将自动把学生分配到对应专业的班级中
       </span>
       <el-button type="primary" style="float: right;" @click="loadData">刷新列表</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe>
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="userNo" label="学号" width="120" />
       <el-table-column prop="name" label="姓名" width="140" />
       <el-table-column prop="phone" label="手机号" width="120" />

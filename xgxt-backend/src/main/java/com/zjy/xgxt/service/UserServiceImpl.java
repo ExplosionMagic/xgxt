@@ -68,7 +68,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 3. 确定角色前缀
-        // ... (在 register 方法的中间部分)
         if (!StringUtils.hasText(user.getRole())) {
             user.setRole("STUDENT"); // 默认学生
         }
@@ -87,7 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             default: prefix = "U";
         }
 
-        // 4. 生成独立自增学号/职工ID
+        // 4. 生成独立自增学号/教职员工ID
         // 查询当前角色下，user_no 最大的那条记录
         LambdaQueryWrapper<User> maxIdQuery = new LambdaQueryWrapper<>();
         maxIdQuery.eq(User::getRole, user.getRole())

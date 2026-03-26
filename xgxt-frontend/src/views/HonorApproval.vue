@@ -1,14 +1,11 @@
 <template>
   <div>
     <div style="margin-bottom: 20px;">
-      <el-tag :type="user.role === 'ADMIN' ? 'danger' : 'warning'" size="large">
-        荣誉奖项{{ user.role === 'ADMIN' ? '终审中心' : '初审中心' }}
-      </el-tag>
       <span style="margin-left: 15px; color: #666; font-size: 14px;">仅显示待您处理的审批单</span>
       <el-button type="primary" style="float: right;" @click="loadData">刷新列表</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe size="large">
+    <el-table :data="tableData" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="studentName" label="姓名" width="100" />
       <el-table-column prop="majorName" label="专业" min-width="140" show-overflow-tooltip />
       <el-table-column prop="honorName" label="申请奖项" min-width="150" />

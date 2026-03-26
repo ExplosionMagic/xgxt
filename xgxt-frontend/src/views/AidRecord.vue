@@ -10,13 +10,13 @@
         <el-option label="终审通过" :value="4" />
       </el-select>
       <el-button type="primary" @click="loadData">查询档案</el-button>
+      <el-button type="warning" @click="exportData" v-if="user.role !== 'STUDENT'">导出报表</el-button>
     </div>
 
     <el-table
         :data="tableData"
         border
         stripe
-        size="large"
         style="width: 100%;"
         :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }"
     >
@@ -74,7 +74,7 @@
         </div>
       </div>
       <template #footer>
-        <el-button type="primary" size="large" @click="detailVisible = false">关闭</el-button>
+        <el-button size="large" @click="detailVisible = false">关闭</el-button>
       </template>
     </el-dialog>
   </div>
@@ -83,6 +83,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import request from '../utils/request'
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 const user = JSON.parse(localStorage.getItem('student-user') || '{}')
 const tableData = ref([])
@@ -113,4 +115,56 @@ const openDetail = (row) => {
 onMounted(() => {
   loadData()
 })
+
+// 终极版：绕过所有拦截器的原生 Fetch 导出
+const exportData = async () => {
+  const user = JSON.parse(localStorage.getItem('student-user') || '{}')
+
+  if (!user.token) {
+    ElMessage.error('获取登录状态失败，请重新登录')
+    return
+  }
+
+  ElMessage.info('正在请求生成报表，请稍候...')
+
+  try {
+    // 使用浏览器原生的 fetch，彻底摆脱 axios 拦截器的干扰
+    const response = await fetch('http://localhost:8080/api/aid/export', {
+      method: 'GET',
+      headers: {
+        'Authorization': user.token
+      }
+    })
+
+    // 1. 检查是不是由于没权限导致后端返回了 JSON 报错
+    const contentType = response.headers.get('content-type')
+    if (contentType && contentType.includes('application/json')) {
+      const errorData = await response.json()
+      ElMessage.error(errorData.msg || '导出失败，后端拒绝访问')
+      return
+    }
+
+    // 2. 正常接收二进制文件流
+    const blob = await response.blob()
+
+    // 3. 触发浏览器原生下载
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = '学生资助申请报表.xlsx' // 导出的文件名
+    document.body.appendChild(link)
+    link.click()
+
+    // 4. 清理内存
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
+
+    ElMessage.success('报表导出成功！')
+
+  } catch (error) {
+    console.error('导出失败详情:', error)
+    ElMessage.error('网络请求失败，请检查后端服务')
+  }
+}
+
 </script>

@@ -15,7 +15,7 @@
       <el-button type="warning" @click="resetSearch">重置</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe fit style="width: 100%">
+    <el-table :data="tableData" border stripe fit style="width: 100%" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="userNo" label="学号" width="100" />
       <el-table-column prop="name" label="姓名" width="140" />
       <el-table-column prop="gender" label="性别" width="60" />

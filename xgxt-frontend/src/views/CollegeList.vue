@@ -6,7 +6,7 @@
       <el-button type="success" @click="handleAdd">新增学院</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe style="width: 100%;">
+    <el-table :data="tableData" border stripe style="width: 100%;" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="id" label="ID" width="80" align="center" />
       <el-table-column prop="collegeName" label="学院名称" min-width="200">
         <template #default="scope">

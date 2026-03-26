@@ -6,7 +6,7 @@
       <el-button type="success" @click="loadData">刷新状态</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe size="large">
+    <el-table :data="tableData" border stripe size="large" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="applyTime" label="申请时间" width="160" />
       <el-table-column prop="honorName" label="申请奖项" width="180" />
       <el-table-column prop="reason" label="主要事迹说明" min-width="200" show-overflow-tooltip />

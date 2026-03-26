@@ -6,7 +6,7 @@
       <el-button type="primary" @click="loadData">搜索</el-button>
     </div>
 
-    <el-table :data="tableData" border stripe fit style="width: 100%">
+    <el-table :data="tableData" border stripe fit style="width: 100%" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="studentNo" label="学号" width="120" />
       <el-table-column prop="studentName" label="姓名" width="140" />
 <!--      <el-table-column prop="major" label="专业" width="150" />-->
