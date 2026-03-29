@@ -15,17 +15,17 @@
           <tbody>
           <tr v-for="section in 5" :key="section">
             <td class="section-col">第 {{ section * 2 - 1 }}-{{ section * 2 }} 节</td>
-            <td v-for="day in 7" :key="day" class="course-cell" @click="handleRecommendSelect(getRecommendCourse(day, section))">
-              <div v-if="getRecommendCourse(day, section)" class="course-card recommend-card">
-                <div class="course-name">{{ getRecommendCourse(day, section).courseName }}</div>
+            <td v-for="day in 7" :key="day" class="course-cell" @click="handleRecommendSelect(recommendMap[`${day}-${section}`])">
+              <div v-if="recommendMap[`${day}-${section}`]" class="course-card recommend-card">
+                <div class="course-name">{{ recommendMap[`${day}-${section}`].courseName }}</div>
                 <div class="course-meta">
-                  <el-tag size="small" :type="getRecommendCourse(day, section).nature === '必修' ? 'danger' : 'warning'">
-                    {{ getRecommendCourse(day, section).nature }}
-                  </el-tag>
+                  <span :type="recommendMap[`${day}-${section}`].nature === '必修' ? 'danger' : 'warning'">
+                    {{ recommendMap[`${day}-${section}`].nature }}
+                  </span>
                 </div>
                 <div class="course-meta" style="margin-top: 5px;">
-                    <span :style="{ color: getRecommendCourse(day, section).enrolled >= getRecommendCourse(day, section).capacity ? 'red' : '#67C23A', fontWeight: 'bold' }">
-                      余量: {{ getRecommendCourse(day, section).capacity - getRecommendCourse(day, section).enrolled }}
+                    <span :style="{ color: recommendMap[`${day}-${section}`].enrolled >= recommendMap[`${day}-${section}`].capacity ? 'red' : '#67C23A', fontWeight: 'bold' }">
+                      余量: {{ recommendMap[`${day}-${section}`].capacity - recommendMap[`${day}-${section}`].enrolled }}
                     </span>
                 </div>
               </div>
@@ -52,25 +52,27 @@
             <el-option label="第7-8节" :value="4" />
             <el-option label="第9-10节" :value="5" />
           </el-select>
-          <el-checkbox v-model="searchParams.hasCapacity" border>只看有余量</el-checkbox>
-          <el-button type="primary" @click="searchCourses">筛选</el-button>
+          <div style="display: flex; align-items: center;">
+            <el-checkbox v-model="searchParams.hasCapacity" border style="margin-right: 15px;">只看有余量</el-checkbox>
+            <el-button type="primary" @click="searchCourses">筛选</el-button>
+          </div>
         </div>
 
-        <el-table :data="independentCourses" border stripe highlight-current-row>
-          <el-table-column prop="courseNo" label="课程代码" width="90" />
-          <el-table-column prop="courseName" label="课程名称" min-width="120" show-overflow-tooltip />
+        <el-table :data="independentCourses" border stripe highlight-current-row :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
+          <el-table-column prop="courseNo" label="课程代码" width="100" />
+          <el-table-column prop="courseName" label="课程名称" min-width="150" show-overflow-tooltip />
           <el-table-column prop="majorName" label="所属专业" width="140" show-overflow-tooltip />
-          <el-table-column prop="nature" label="课程性质" width="140" align="center">
+          <el-table-column prop="nature" label="课程性质" width="100" align="center">
             <template #default="scope">
-              <el-tag :type="scope.row.nature === '必修' ? 'danger' : 'warning'">{{ scope.row.nature }}</el-tag>
+              <span :type="scope.row.nature === '必修' ? 'danger' : 'warning'">{{ scope.row.nature }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="上课时间" width="140" align="center">
+          <el-table-column label="上课时间" width="150" align="center">
             <template #default="scope">周{{ scope.row.dayOfWeek }} 第{{ scope.row.section * 2 - 1 }}-{{ scope.row.section * 2 }}节</template>
           </el-table-column>
-          <el-table-column prop="teacherName" label="上课教师" width="140" />
-          <el-table-column prop="location" label="上课地点" width="110" show-overflow-tooltip />
-          <el-table-column label="余量" width="80" align="center">
+          <el-table-column prop="teacherName" label="上课教师" width="120" />
+          <el-table-column prop="location" label="上课地点" width="120" show-overflow-tooltip />
+          <el-table-column label="余量" width="90" align="center">
             <template #default="scope">
               <span :style="{ color: scope.row.enrolled >= scope.row.capacity ? 'red' : '#67C23A', fontWeight: 'bold' }">
                 {{ scope.row.capacity - scope.row.enrolled }} / {{ scope.row.capacity }}
@@ -94,19 +96,19 @@
       <el-tab-pane label="选课记录" name="records">
         <el-alert title="若任课老师已录入期末成绩，将无法退课。" type="info" show-icon style="margin-bottom: 15px;" />
 
-        <el-table :data="myRecords" border stripe>
-          <el-table-column prop="courseName" label="课程名称" min-width="150" />
+        <el-table :data="myRecords" border stripe :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }" >
+          <el-table-column prop="courseName" label="课程名称" min-width="180" />
           <el-table-column prop="teacherName" label="上课教师" width="140" />
           <el-table-column prop="credit" label="学分" width="80" align="center" />
           <el-table-column label="选课状态" width="120" align="center">
             <template #default>
-              <el-tag type="success">成功</el-tag>
+              <span>选修成功</span>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="150" align="center">
             <template #default="scope">
-              <el-button v-if="scope.row.score === null" type="danger" size="small" @click="handleDropCourse(scope.row.id)">退课</el-button>
-              <span v-else style="color: #999; font-size: 12px;">已结课</span>
+              <el-button v-if="scope.row.score === null || scope.row.score === undefined" type="danger" size="small" @click="handleDropCourse(scope.row.id)">退课</el-button>
+              <span v-else style="color: #999; font-size: 13px;">已结课</span>
             </template>
           </el-table-column>
         </el-table>
@@ -127,10 +129,10 @@
           <tr v-for="section in 5" :key="section">
             <td class="section-col">第 {{ section * 2 - 1 }}-{{ section * 2 }} 节</td>
             <td v-for="day in 7" :key="day" class="course-cell">
-              <div v-if="getMyCourse(day, section)" class="course-card my-card">
-                <div class="course-name">{{ getMyCourse(day, section).courseName }}</div>
-                <div class="course-meta">地点: {{ getMyCourse(day, section).location }}</div>
-                <div class="course-meta">教师: {{ getMyCourse(day, section).teacherName }}</div>
+              <div v-if="myTimetableMap[`${day}-${section}`]" class="course-card my-card">
+                <div class="course-name">{{ myTimetableMap[`${day}-${section}`].courseName }}</div>
+                <div class="course-meta">地点: {{ myTimetableMap[`${day}-${section}`].location }}</div>
+                <div class="course-meta">教师: {{ myTimetableMap[`${day}-${section}`].teacherName }}</div>
               </div>
             </td>
           </tr>
@@ -152,10 +154,11 @@ const activeTab = ref('independent')
 const weekDays = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 
 // 数据源
-const recommendCourses = ref([])
 const independentCourses = ref([])
-const myRecords = ref([]) // 选课记录数据
-const myCourses = ref([]) // 网格课表数据
+const myRecords = ref([])
+
+const recommendMap = ref({})
+const myTimetableMap = ref({})
 
 // 1. 加载推荐课表
 const loadRecommendCourses = () => {
@@ -163,11 +166,15 @@ const loadRecommendCourses = () => {
     request.get('/course/list', {
       params: { majorName: userRes.data.major, targetGrade: userRes.data.grade }
     }).then(res => {
-      recommendCourses.value = res.data
+      // 构建高速字典，以 "星期-节次" 为 Key
+      const map = {}
+      res.data.forEach(course => {
+        map[`${course.dayOfWeek}-${course.section}`] = course
+      })
+      recommendMap.value = map
     })
   })
 }
-const getRecommendCourse = (day, section) => recommendCourses.value.find(c => c.dayOfWeek === day && c.section === section)
 
 // 2. 自主选课大厅查询
 const searchParams = ref({ nature: '', dayOfWeek: null, section: null, hasCapacity: false })
@@ -179,7 +186,8 @@ const searchCourses = () => {
 
 // 3. 加载选课记录 (列表)
 const loadMyRecords = () => {
-  request.get('/score/list', { params: { studentNo: user.userNo } }).then(res => {
+  // 【核心修复】：追加了 role 参数，彻底消灭 500 报错
+  request.get('/score/list', { params: { studentNo: user.userNo, role: user.role } }).then(res => {
     myRecords.value = res.data
   })
 }
@@ -187,12 +195,16 @@ const loadMyRecords = () => {
 // 4. 加载我的已选课表 (网格)
 const loadMyTimetable = () => {
   request.get('/course/timetable', { params: { userNo: user.userNo, role: 'STUDENT' } }).then(res => {
-    myCourses.value = res.data
+    // 构建高速字典，以 "星期-节次" 为 Key
+    const map = {}
+    res.data.forEach(course => {
+      map[`${course.dayOfWeek}-${course.section}`] = course
+    })
+    myTimetableMap.value = map
   })
 }
-const getMyCourse = (day, section) => myCourses.value.find(c => c.dayOfWeek === day && c.section === section)
 
-// --- 核心：一键选课执行逻辑 ---
+// 选课逻辑
 const executeSelectCourse = (course) => {
   if (course.enrolled >= course.capacity) {
     ElMessage.warning('该课程名额已满！')
@@ -200,26 +212,34 @@ const executeSelectCourse = (course) => {
   }
 
   request.post('/score/selectCourse', { studentNo: user.userNo, courseId: course.id }).then(res => {
-    ElMessage.success( '选课成功！')
-    // 选课成功后，刷新所有数据，并切到选课记录
-    refreshAllData()
-    activeTab.value = 'records'
+    if (res.code === 200) {
+      ElMessage.success('选课成功！')
+      refreshAllData() // 刷新所有数据 (包含余量和课表)
+      activeTab.value = 'records' // 自动切到记录页
+    } else {
+      ElMessage.error('选课失败')
+    }
   })
 }
 
+// 点击推荐课表的单元格选课
 const handleRecommendSelect = (course) => {
   if (!course) return
   executeSelectCourse(course)
 }
 
-// --- 核心：退课执行逻辑 ---
+// 退课
 const handleDropCourse = (id) => {
-  ElMessageBox.confirm('确定要退选这门课吗？', '确认退课', { type: 'warning', confirmButtonText: '退课', cancelButtonText: '取消' }).then(() => {
+  ElMessageBox.confirm('确定要退选这门课吗？', '确认退课', { type: 'warning', confirmButtonText: '确定退课', cancelButtonText: '取消' }).then(() => {
     request.delete(`/score/${id}`).then(res => {
-      ElMessage.success('退课成功')
-      refreshAllData() // 退课后同步刷新所有数据
+      if (res.code === 200) {
+        ElMessage.success('退课成功')
+        refreshAllData()
+      } else {
+        ElMessage.error('退课失败')
+      }
     })
-  })
+  }).catch(() => {})
 }
 
 // 统一刷新所有页面数据

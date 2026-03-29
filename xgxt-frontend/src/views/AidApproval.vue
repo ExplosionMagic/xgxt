@@ -52,11 +52,11 @@
         <el-button @click="detailVisible = false">关闭</el-button>
         <template v-if="user.role === 'TEACHER'">
           <el-button type="danger" @click="handleTeacherAudit(currentAid, 1)">驳回</el-button>
-          <el-button type="success" @click="handleTeacherAudit(currentAid, 2)">批准</el-button>
+          <el-button type="success" @click="handleTeacherAudit(currentAid, 2)">同意</el-button>
         </template>
         <template v-if="user.role === 'ADMIN'">
           <el-button type="danger" @click="handleAdminAudit(currentAid, 3)">驳回</el-button>
-          <el-button type="success" @click="handleAdminAudit(currentAid, 4)">批准</el-button>
+          <el-button type="success" @click="handleAdminAudit(currentAid, 4)">同意</el-button>
         </template>
       </template>
     </el-dialog>
@@ -106,7 +106,7 @@ const handleTeacherAudit = (row, newStatus) => {
 }
 
 const handleAdminAudit = (row, newStatus) => {
-  const actionText = newStatus === 4 ? '终审批准并列入资助名单' : '驳回'
+  const actionText = newStatus === 4 ? '终审同意并列入资助名单' : '驳回'
   ElMessageBox.confirm(`确定要${actionText}吗？`, '终审确认', { type: newStatus === 4 ? 'success' : 'warning' }).then(() => {
     request.put('/aid/audit/admin', {
       id: row.id,

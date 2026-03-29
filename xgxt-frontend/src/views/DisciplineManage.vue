@@ -13,16 +13,16 @@
         <el-table-column prop="createTime" label="记录时间" min-width="160" />
         <el-table-column prop="violationType" label="违纪类型" min-width="140" />
         <el-table-column prop="description" label="违纪事实描述" min-width="250" show-overflow-tooltip />
-        <el-table-column label="当前状态 / 处分级别" min-width="180" align="center">
+        <el-table-column label="当前状态/处分级别" min-width="180" align="center">
           <template #default="scope">
-            <el-tag v-if="scope.row.status === 0" type="warning" size="large">核查中</el-tag>
-            <el-tag v-else-if="scope.row.status === 1" type="danger" effect="dark" size="large">
+            <span v-if="scope.row.status === 0">待核查</span>
+            <span v-else-if="scope.row.status === 1">
               {{ scope.row.punishmentType }}
-            </el-tag>
-            <el-tag v-else-if="scope.row.status === 2" type="info" size="large">撤销/驳回</el-tag>
+            </span>
+            <span v-else-if="scope.row.status === 2">已撤销</span>
           </template>
         </el-table-column>
-        <el-table-column prop="reporter" label="上报人" min-width="100" v-if="user.role !== 'STUDENT'" />
+        <el-table-column prop="reporter" label="举报人" min-width="100" v-if="user.role !== 'STUDENT'" />
       </el-table>
     </div>
 
@@ -31,7 +31,7 @@
       <div style="margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap;">
         <el-input v-model="searchKeyword" placeholder="按姓名或学号搜索" style="width: 250px;" clearable prefix-icon="Search" />
         <el-button type="primary" @click="loadData">查询</el-button>
-        <el-button v-if="user.role === 'TEACHER'" type="danger" @click="openReportDialog">违纪上报</el-button>
+        <el-button v-if="user.role === 'TEACHER'" type="danger" @click="openReportDialog">违纪行为上报</el-button>
         <el-button type="warning" @click="exportData" v-if="user.role === 'ADMIN'">导出报表</el-button>
       </div>
 
@@ -44,28 +44,28 @@
             <span>{{ scope.row.violationType }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="createTime" label="上报时间" min-width="160" />
+        <el-table-column prop="createTime" label="举报时间" min-width="160" />
         <el-table-column label="状态与处分" min-width="160" align="center">
           <template #default="scope">
-            <el-tag v-if="scope.row.status === 0" type="warning">待核实</el-tag>
+            <span v-if="scope.row.status === 0">待核查</span>
 
-            <el-tag v-else-if="scope.row.status === 1" type="danger" effect="dark">
+            <span v-else-if="scope.row.status === 1">
               {{ scope.row.punishmentType || '已处分' }}
-            </el-tag>
+            </span>
 
-            <el-tag v-else-if="scope.row.status === 2" type="info">已驳回/撤销</el-tag>
+            <span v-else-if="scope.row.status === 2" type="info">已撤销</span>
           </template>
         </el-table-column>
         <el-table-column label="操作" min-width="180" align="center" fixed="right">
           <template #default="scope">
-            <el-button type="info" size="small" plain @click="openDetail(scope.row)">详情与审批</el-button>
-            <el-button v-if="user.role === 'TEACHER' && scope.row.status === 0" type="danger" size="small" plain @click="handleDelete(scope.row.id)">撤销</el-button>
+            <el-button type="info" size="small" plain @click="openDetail(scope.row)">查看详情</el-button>
+            <el-button v-if="user.role === 'TEACHER' && scope.row.status === 0" type="danger" size="small" plain @click="handleDelete(scope.row.id)">撤回</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
 
-    <el-dialog v-model="reportDialogVisible" title="填写违纪上报单" width="550px">
+    <el-dialog v-model="reportDialogVisible" title="填写违纪行为上报单" width="550px">
       <el-alert title="输入学号后，系统会自动匹配该学生信息。" type="info" show-icon style="margin-bottom: 15px;" />
 
       <el-form :model="form" label-width="90px">
@@ -73,14 +73,14 @@
           <el-input v-model="form.studentNo" placeholder="请输入违纪学生的学号" @blur="fetchStudentInfo" />
         </el-form-item>
         <el-form-item label="学生姓名">
-          <el-input v-model="form.studentName" disabled placeholder="自动获取" />
+          <el-input v-model="form.studentName" disabled placeholder="系统自动获取" />
         </el-form-item>
         <el-form-item label="专业班级">
-          <el-input :value="(form.majorName || '') + ' - ' + (form.className || '')" disabled placeholder="自动获取" />
+          <el-input :value="(form.majorName || '') + ' - ' + (form.className || '')" disabled placeholder="系统自动获取" />
         </el-form-item>
 
         <el-form-item label="违纪类型" required>
-          <el-select v-model="form.violationType" placeholder="请选择违纪类型" style="width: 100%;">
+          <el-select v-model="form.violationType" placeholder="请选择违纪行为类型" style="width: 100%;">
             <el-option label="考试作弊" value="考试作弊" />
             <el-option label="旷课迟到" value="旷课迟到" />
             <el-option label="寻衅滋事" value="寻衅滋事" />
@@ -107,17 +107,17 @@
           <el-descriptions-item label="违纪类型">
             <span>{{ currentRecord.violationType }}</span>
           </el-descriptions-item>
-          <el-descriptions-item label="上报时间">{{ currentRecord.createTime }}</el-descriptions-item>
-          <el-descriptions-item label="上报教师">{{ currentRecord.reporter }}</el-descriptions-item>
-          <el-table-column label="当前状态 / 处分级别" min-width="180" align="center">
+          <el-descriptions-item label="举报时间">{{ currentRecord.createTime }}</el-descriptions-item>
+          <el-descriptions-item label="举报人">{{ currentRecord.reporter }}</el-descriptions-item>
+          <el-table-column label="当前状态/处分级别" min-width="180" align="center">
             <template #default="scope">
-              <el-tag v-if="scope.row.status === 0" type="warning" size="large">核查中</el-tag>
+              <span v-if="scope.row.status === 0">待核查</span>
 
-              <el-tag v-else-if="scope.row.status === 1" type="danger" effect="dark" size="large">
+              <span v-else-if="scope.row.status === 1">
                 {{ scope.row.punishmentType ? '：' + scope.row.punishmentType : '' }}
-              </el-tag>
+              </span>
 
-              <el-tag v-else-if="scope.row.status === 2" type="info" size="large">撤销/驳回</el-tag>
+              <span v-else-if="scope.row.status === 2">已撤销</span>
             </template>
           </el-table-column>
         </el-descriptions>
@@ -136,7 +136,7 @@
 
 
             <div v-if="currentRecord.status === 0" style="display: flex; gap: 10px; align-items: center;">
-              <div>给予该生</div>
+              <div>经学工处决定，给予该生</div>
               <el-select v-model="auditPunishment" placeholder="选择处分类型" style="width: 140px;" size="large">
                 <el-option label="警告" value="警告" />
                 <el-option label="严重警告" value="严重警告" />
@@ -214,7 +214,7 @@ const fetchStudentInfo = () => {
 
 const submitReport = () => {
   if (!form.value.studentName || !form.value.description) {
-    ElMessage.warning('请确保已匹配到学生姓名，并填写违纪事实')
+    ElMessage.warning('请确认学生姓名无误，并填写违纪事实')
     return
   }
   request.post('/discipline/report', form.value).then(res => {
@@ -232,13 +232,13 @@ const openDetail = (row) => {
 
 // 【重构】管理员审批逻辑 (加入处分级别校验)
 const handleAudit = (row, newStatus) => {
-  // 如果是批准下达处分，必须选择处分级别
+  // 如果是同意下达处分，必须选择处分级别
   if (newStatus === 1 && !auditPunishment.value) {
-    ElMessage.warning('下达处分前，必须先选择【处分类型】！')
+    ElMessage.warning('给予处分前，必须先选择【处分类型】！')
     return
   }
 
-  const actionText = newStatus === 1 ? `给予该生【${auditPunishment.value}】处分` : '驳回'
+  const actionText = newStatus === 1 ? `决定给予该生【${auditPunishment.value}】处分` : '驳回'
   ElMessageBox.confirm(`确定要${actionText}吗？`, '提示', {
     type: newStatus === 1 ? 'error' : 'warning',
     confirmButtonText: '确定',
@@ -284,9 +284,9 @@ const handleRevoke = (row) => {
 }
 
 const handleDelete = (id) => {
-  ElMessageBox.confirm('确定要撤销这条违纪上报吗？', '提示', { type: 'warning' }).then(() => {
+  ElMessageBox.confirm('正在等待管理员核查，确定要撤回这条上报记录吗？', '提示', { type: 'warning' }).then(() => {
     request.delete(`/discipline/${id}`).then(res => {
-      ElMessage.success('已撤销')
+      ElMessage.success('已撤回')
       loadData()
     })
   }).catch(() => {})

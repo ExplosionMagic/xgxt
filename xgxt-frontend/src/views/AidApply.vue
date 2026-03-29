@@ -11,11 +11,11 @@
       <el-table-column prop="reason" label="申请理由" min-width="200" show-overflow-tooltip />
       <el-table-column label="当前进度" width="180" align="center">
         <template #default="scope">
-          <el-tag v-if="scope.row.status === 0" type="warning">待初审</el-tag>
-          <el-tag v-else-if="scope.row.status === 1" type="danger">初审驳回</el-tag>
-          <el-tag v-else-if="scope.row.status === 2" type="primary">初审通过待终审</el-tag>
-          <el-tag v-else-if="scope.row.status === 3" type="danger">终审驳回</el-tag>
-          <el-tag v-else-if="scope.row.status === 4" type="success" effect="dark">终审通过</el-tag>
+          <span v-if="scope.row.status === 0">待初审</span>
+          <span v-else-if="scope.row.status === 1">初审驳回</span>
+          <span v-else-if="scope.row.status === 2">初审同意待终审</span>
+          <span v-else-if="scope.row.status === 3">终审驳回</span>
+          <span v-else-if="scope.row.status === 4">已同意</span>
         </template>
       </el-table-column>
       <el-table-column label="经办人" width="150" v-if="user.role !== 'STUDENT'">

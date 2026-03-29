@@ -10,7 +10,7 @@
       <el-table-column prop="id" label="ID" width="80" align="center" />
       <el-table-column prop="gradeName" label="年级名称" align="center">
         <template #default="scope">
-          <el-tag size="large" type="primary">{{ scope.row.gradeName }}</el-tag>
+          <span>{{ scope.row.gradeName }}</span>
         </template>
       </el-table-column>
 <!--      <el-table-column prop="createTime" label="创建时间" align="center" />-->

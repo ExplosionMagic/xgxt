@@ -10,9 +10,9 @@
       <el-table-column prop="title" label="公告标题" min-width="200" show-overflow-tooltip />
       <el-table-column prop="targetType" label="发送范围" width="120" align="center">
         <template #default="scope">
-          <el-tag v-if="scope.row.targetType === 'ALL'" type="danger">全校可见</el-tag>
-          <el-tag v-else-if="scope.row.targetType === 'MAJOR'" type="warning">特定专业</el-tag>
-          <el-tag v-else type="success">特定班级</el-tag>
+          <span v-if="scope.row.targetType === 'ALL'">全校可见</span>
+          <span v-else-if="scope.row.targetType === 'MAJOR'">特定专业</span>
+          <span v-else>特定班级</span>
         </template>
       </el-table-column>
       <el-table-column prop="targetValue" label="具体接收方" width="150">

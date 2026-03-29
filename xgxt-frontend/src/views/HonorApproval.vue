@@ -39,11 +39,11 @@
         <el-button @click="detailVisible = false">取消</el-button>
         <template v-if="user.role === 'TEACHER'">
           <el-button type="danger" @click="handleAudit(currentHonor, 1, 'teacher')">驳回</el-button>
-          <el-button type="success" @click="handleAudit(currentHonor, 2, 'teacher')">批准</el-button>
+          <el-button type="success" @click="handleAudit(currentHonor, 2, 'teacher')">同意</el-button>
         </template>
         <template v-if="user.role === 'ADMIN'">
           <el-button type="danger" @click="handleAudit(currentHonor, 3, 'admin')">驳回</el-button>
-          <el-button type="success" @click="handleAudit(currentHonor, 4, 'admin')">批准</el-button>
+          <el-button type="success" @click="handleAudit(currentHonor, 4, 'admin')">同意</el-button>
         </template>
       </template>
     </el-dialog>
@@ -74,7 +74,7 @@ const openDetail = (row) => {
 
 const handleAudit = (row, newStatus, roleType) => {
   const apiPath = roleType === 'teacher' ? '/honor/audit/teacher' : '/honor/audit/admin'
-  const actionText = (newStatus === 2 || newStatus === 4) ? '批准' : '驳回'
+  const actionText = (newStatus === 2 || newStatus === 4) ? '同意' : '驳回'
 
   ElMessageBox.confirm(`确定要${actionText}吗？`, '审批确认', { type: (newStatus === 2 || newStatus === 4) ? 'success' : 'warning' }).then(() => {
     const payload = { id: row.id, status: newStatus }

@@ -28,9 +28,9 @@
       <el-table-column prop="name" label="姓名" width="140" />
       <el-table-column prop="role" label="角色" width="100" align="center">
         <template #default="scope">
-          <el-tag v-if="scope.row.role === 'ADMIN'" type="danger">管理员</el-tag>
-          <el-tag v-else-if="scope.row.role === 'TEACHER'" type="warning">教师</el-tag>
-          <el-tag v-else>学生</el-tag>
+          <span v-if="scope.row.role === 'ADMIN'">管理员</span>
+          <span v-else-if="scope.row.role === 'TEACHER'">教师</span>
+          <span v-else>学生</span>
         </template>
       </el-table-column>
       <el-table-column prop="phone" label="手机号" width="120" />
@@ -220,7 +220,7 @@ const save = () => {
         })
       }
     } else {
-      ElMessage.warning('请检查带红星的必填项是否有误！')
+      ElMessage.warning('请检查带*的必填项是否有误！')
       return false
     }
   })

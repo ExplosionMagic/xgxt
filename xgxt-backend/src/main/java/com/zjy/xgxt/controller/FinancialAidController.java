@@ -116,7 +116,7 @@ public class FinancialAidController {
         // 2. 查询全量数据 (如果你想按条件导出，可以在这里构造 LambdaQueryWrapper)
         List<FinancialAid> list = financialAidService.list();
 
-        // 3. 将数据写入 Excel 流并输出
+        // 3. 将数据写入报表并输出
         EasyExcel.write(response.getOutputStream(), FinancialAid.class)
                 .sheet("资助档案数据")
                 .doWrite(list);

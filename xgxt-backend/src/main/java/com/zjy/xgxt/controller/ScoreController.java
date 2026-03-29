@@ -5,14 +5,15 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.zjy.xgxt.common.Result;
 import com.zjy.xgxt.entity.Course;
 import com.zjy.xgxt.entity.Score;
-import com.zjy.xgxt.entity.vo.ScoreVo;
 import com.zjy.xgxt.mapper.ScoreMapper;
 import com.zjy.xgxt.service.CourseService;
 import com.zjy.xgxt.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,15 +29,18 @@ public class ScoreController {
     @Autowired
     private CourseService courseService;
 
-    /**
-     * 查询选课/成绩明细列表
-     */
+    // 查询选课成绩列表
     @GetMapping("/list")
-    public Result<List<ScoreVo>> list(@RequestParam(required = false) String studentNo,
-                                      @RequestParam(required = false) String courseName,
-                                      @RequestParam(required = false) Integer status,
-                                      @RequestParam(required = false) String teacherName) {
-        List<ScoreVo> list = scoreMapper.getScoreList(studentNo, courseName, status, teacherName);
+    public Result<List<Score>> list(
+            @RequestParam String role,
+            @RequestParam(required = false) String studentNo,
+            @RequestParam(required = false) String teacherName,
+            @RequestParam(required = false) String courseName) {
+
+        // 前端会根据角色自动分发参数
+        // 直接把参数传给联表查询
+        List<Score> list = scoreMapper.getScoreList(studentNo, courseName, teacherName);
+
         return Result.success(list);
     }
 

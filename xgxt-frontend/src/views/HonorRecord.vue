@@ -21,11 +21,11 @@
 
       <el-table-column label="最终状态" min-width="140" align="center">
         <template #default="scope">
-          <el-tag v-if="scope.row.status === 0" type="warning" size="large">待初审</el-tag>
-          <el-tag v-else-if="scope.row.status === 1" type="danger" size="large">初审驳回</el-tag>
-          <el-tag v-else-if="scope.row.status === 2" type="primary" size="large">初审通过待终审</el-tag>
-          <el-tag v-else-if="scope.row.status === 3" type="danger" size="large">终审驳回</el-tag>
-          <el-tag v-else-if="scope.row.status === 4" type="success" effect="dark" size="large">终审通过</el-tag>
+          <span v-if="scope.row.status === 0">待初审</span>
+          <span v-else-if="scope.row.status === 1">初审驳回</span>
+          <span v-else-if="scope.row.status === 2">初审同意待终审</span>
+          <span v-else-if="scope.row.status === 3">终审驳回</span>
+          <span v-else-if="scope.row.status === 4">已同意</span>
         </template>
       </el-table-column>
 

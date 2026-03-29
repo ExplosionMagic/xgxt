@@ -15,7 +15,7 @@
       <el-table-column prop="majorName" label="所属专业" width="150" show-overflow-tooltip />
       <el-table-column prop="nature" label="课程性质" width="140" align="center">
         <template #default="scope">
-          <el-tag :type="scope.row.nature === '必修' ? 'danger' : 'warning'">{{ scope.row.nature || '选修' }}</el-tag>
+          <span :type="scope.row.nature === '必修' ? 'danger' : 'warning'">{{ scope.row.nature || '选修' }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="targetGrade" label="年级" width="100" align="center">

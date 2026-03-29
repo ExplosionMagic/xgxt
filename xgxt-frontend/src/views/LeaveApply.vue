@@ -11,9 +11,9 @@
       <el-table-column prop="endTime" label="结束时间" width="160" />
       <el-table-column prop="status" label="状态" width="100" align="center">
         <template #default="scope">
-          <el-tag v-if="scope.row.status === 0" type="warning">待审批</el-tag>
-          <el-tag v-else-if="scope.row.status === 1" type="success">已同意</el-tag>
-          <el-tag v-else-if="scope.row.status === 2" type="danger">已驳回</el-tag>
+          <span v-if="scope.row.status === 0" type="warning">待审批</span>
+          <span v-else-if="scope.row.status === 1">已同意</span>
+          <span v-else-if="scope.row.status === 2">已驳回</span>
         </template>
       </el-table-column>
       <el-table-column prop="approver" label="审批人" width="100" />

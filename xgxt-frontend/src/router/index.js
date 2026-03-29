@@ -139,11 +139,11 @@ const routes = [
             },
 
             // 数据大屏
-            {
-                path: '/dashboard',
-                name: 'Dashboard',
-                component: () => import('../views/Dashboard.vue'),
-            },
+            // {
+            //     path: '/dashboard',
+            //     name: 'Dashboard',
+            //     component: () => import('../views/Dashboard.vue'),
+            // },
 
             // 年级管理
             {

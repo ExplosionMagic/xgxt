@@ -138,7 +138,7 @@
             <el-menu-item index="/honor-approval">荣誉待办审批</el-menu-item>
             <el-menu-item index="/honor-record">荣誉申报记录</el-menu-item>
             <el-menu-item index="/discipline">
-              <span v-if="user.role === 'TEACHER'">违纪上报</span>
+              <span v-if="user.role === 'TEACHER'">违纪行为上报</span>
               <span v-else>处分审批记录</span>
             </el-menu-item>
           </el-sub-menu>

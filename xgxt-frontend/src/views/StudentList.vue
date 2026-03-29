@@ -32,9 +32,9 @@
       <el-table-column prop="phone" label="手机号" width="120" />
       <el-table-column prop="status" label="账号状态" width="90" align="center">
         <template #default="scope">
-          <el-tag :type="scope.row.status === 1 ? 'success' : 'danger'">
+          <span :type="scope.row.status === 1 ? 'success' : 'danger'">
             {{ scope.row.status === 1 ? '正常' : '停用' }}
-          </el-tag>
+          </span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="120" align="center">

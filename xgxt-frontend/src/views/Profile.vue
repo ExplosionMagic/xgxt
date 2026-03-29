@@ -4,7 +4,7 @@
 
       <div v-if="userInfo.auditStatus === 0 || userInfo.auditStatus === 3" style="text-align: center; padding: 40px 20px;">
         <el-alert v-if="userInfo.auditStatus === 3" title="您的专业选择被管理员驳回，请重新选择" type="error" show-icon style="margin-bottom: 20px;" />
-        <h2 style="margin-bottom: 30px;">👋 欢迎来到系统，请先完善您的专业信息</h2>
+        <h2 style="margin-bottom: 30px;">欢迎来到系统，请先完善您的专业信息</h2>
         <el-form style="max-width: 400px; margin: 0 auto;">
           <el-form-item label="选择专业" required>
             <el-select v-model="selectedMajor" placeholder="请选择您就读的专业" style="width: 100%;">
@@ -38,7 +38,7 @@
                 <el-descriptions-item label="专业">{{ userInfo.major || '--' }}</el-descriptions-item>
                 <el-descriptions-item label="年级">{{ userInfo.grade || '--' }}</el-descriptions-item>
                 <el-descriptions-item label="班级">
-                  <el-tag v-if="userInfo.className">{{ userInfo.className }}</el-tag>
+                  <span v-if="userInfo.className">{{ userInfo.className }}</span>
                   <span v-else>--</span>
                 </el-descriptions-item>
               </template>
@@ -61,7 +61,7 @@
               <el-input v-model="editForm.phone" placeholder="请输入新的手机号" />
             </el-form-item>
             <el-form-item label="联系地址">
-              <el-input v-model="editForm.address" placeholder="例如：XX校区X栋" />
+              <el-input v-model="editForm.address" placeholder=" " />
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="saveProfile">保存修改</el-button>

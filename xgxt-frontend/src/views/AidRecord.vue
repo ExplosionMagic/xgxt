@@ -28,11 +28,11 @@
 
       <el-table-column label="最终状态" min-width="140" align="center">
         <template #default="scope">
-          <el-tag v-if="scope.row.status === 0" type="warning" size="large">待初审</el-tag>
-          <el-tag v-else-if="scope.row.status === 1" type="danger" size="large">初审驳回</el-tag>
-          <el-tag v-else-if="scope.row.status === 2" type="primary" size="large">初审通过待终审</el-tag>
-          <el-tag v-else-if="scope.row.status === 3" type="danger" size="large">终审驳回</el-tag>
-          <el-tag v-else-if="scope.row.status === 4" type="success" effect="dark" size="large">终审通过</el-tag>
+          <span v-if="scope.row.status === 0">待初审</span>
+          <span v-else-if="scope.row.status === 1">初审驳回</span>
+          <span v-else-if="scope.row.status === 2">初审同意待终审</span>
+          <span v-else-if="scope.row.status === 3">终审驳回</span>
+          <span v-else-if="scope.row.status === 4">已同意</span>
         </template>
       </el-table-column>
 
@@ -40,11 +40,9 @@
         <template #default="scope">
           <div style="font-size: 13px; color: #606266; line-height: 1.6;">
             <div style="display: flex; align-items: center; margin-bottom: 4px;">
-<!--              <el-tag size="small" type="info" style="margin-right: 6px;">初审</el-tag>-->
               <span>初审：{{ scope.row.teacherApprover || '等待处理' }}</span>
             </div>
             <div style="display: flex; align-items: center;">
-<!--              <el-tag size="small" type="info" style="margin-right: 6px;">终审</el-tag>-->
               <span>终审：{{ scope.row.adminApprover || '等待处理' }}</span>
             </div>
           </div>

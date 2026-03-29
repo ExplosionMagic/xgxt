@@ -45,6 +45,6 @@ public class DisciplinaryRecord {
     @ExcelProperty("审批管理员")
     private String adminApprover;
 
-    @ExcelProperty("上报时间")
+    @ExcelProperty("举报时间")
     private String createTime;
 }
