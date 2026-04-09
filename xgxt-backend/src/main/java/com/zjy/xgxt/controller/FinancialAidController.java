@@ -85,14 +85,14 @@ public class FinancialAidController {
     }
 
     /**
-     * 4. 管理员终审
+     * 4. 管理员复审
      */
     @PutMapping("/audit/admin")
     public Result<?> adminAudit(@RequestBody FinancialAid aid) {
         if (aid.getId() == null || aid.getStatus() == null) return Result.error("参数异常");
         // 状态只允许变更为 3(驳回) 或 4(彻底通过)
         financialAidService.updateById(aid);
-        return Result.success(aid.getStatus() == 4 ? "终审通过，已将该生列入资助名单" : "已驳回该申请");
+        return Result.success(aid.getStatus() == 4 ? "复审通过，已将该生列入资助名单" : "已驳回该申请");
     }
 
     /**

@@ -31,18 +31,18 @@ public class FinancialAid {
     @ColumnWidth(15)
     private String className;
 
-    @ExcelProperty("申请理由说明")
+    @ExcelProperty("申请理由")
     @ColumnWidth(40)
     private String reason;
 
-    @ExcelProperty("审批状态 (0待初审 1驳回 2待终审 3终审驳回 4通过)")
+    @ExcelProperty("审批状态 (0待初审 1驳回 2待复审 3复审驳回 4通过)")
     @ColumnWidth(20)
     private Integer status;
 
-    @ExcelProperty("初审教师")
+    @ExcelProperty("初审处理人")
     private String teacherApprover;
 
-    @ExcelProperty("终审管理员")
+    @ExcelProperty("复审处理人")
     private String adminApprover;
 
     @ExcelProperty("申请时间")

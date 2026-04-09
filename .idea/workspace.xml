@@ -6,32 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="451aed1a-d433-4fe9-92cf-e5e524244bc0" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/FinancialAidController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/FinancialAidController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/ScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/ScoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/DisciplinaryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/DisciplinaryRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/vo/ScoreVo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/ScoreMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/mapper/ScoreMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/HonorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/controller/HonorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/FinancialAid.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/FinancialAid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/HonorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-backend/src/main/java/com/zjy/xgxt/entity/HonorApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidApproval.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AidRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AidRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/AnnouncementManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/CourseSelection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Dashboard.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/DisciplineManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/DisciplineManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ElectiveApproval.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/GradeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/GradeList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApproval.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorApproval.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/HonorRecord.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/LeaveApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/ScoreList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/ScoreList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/StudentList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/StudentList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/Timetable.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgxt-frontend/src/views/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xgxt-frontend/src/views/UserList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +125,9 @@
       <workItem from="1774426437895" duration="12867000" />
       <workItem from="1774487616021" duration="15177000" />
       <workItem from="1774580686935" duration="13007000" />
+      <workItem from="1775708307836" duration="612000" />
+      <workItem from="1775717179297" duration="4902000" />
+      <workItem from="1775727933768" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

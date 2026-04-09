@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin-bottom: 20px;">
-      <el-alert title="资助申请需经过【初审】与【终审】两级审批，请如实填写。" type="success" show-icon style="margin-bottom: 15px;" />
+      <el-alert title="资助申请需经过【初审】与【复审】多级审批，请如实填写相关信息。" type="success" show-icon style="margin-bottom: 15px;" />
       <el-button type="primary" @click="openApplyDialog" v-if="user.role === 'STUDENT'">发起资助申请</el-button>
       <el-button type="success" @click="loadData">刷新状态</el-button>
     </div>
@@ -13,16 +13,16 @@
         <template #default="scope">
           <span v-if="scope.row.status === 0">待初审</span>
           <span v-else-if="scope.row.status === 1">初审驳回</span>
-          <span v-else-if="scope.row.status === 2">初审同意待终审</span>
-          <span v-else-if="scope.row.status === 3">终审驳回</span>
-          <span v-else-if="scope.row.status === 4">已同意</span>
+          <span v-else-if="scope.row.status === 2">初审通过待复审</span>
+          <span v-else-if="scope.row.status === 3">复审驳回</span>
+          <span v-else-if="scope.row.status === 4">复审通过</span>
         </template>
       </el-table-column>
       <el-table-column label="经办人" width="150" v-if="user.role !== 'STUDENT'">
         <template #default="scope">
           <div style="font-size: 12px; color: #666;">
             <div>初审: {{ scope.row.teacherApprover || '--' }}</div>
-            <div>终审: {{ scope.row.adminApprover || '--' }}</div>
+            <div>复审: {{ scope.row.adminApprover || '--' }}</div>
           </div>
         </template>
       </el-table-column>
@@ -44,7 +44,7 @@
         </el-descriptions>
 
         <el-form-item label="申请理由" required>
-          <el-input type="textarea" v-model="form.reason" placeholder="请详细描述家庭经济状况及申请资助的理由 (不少于50字)" :rows="6" />
+          <el-input type="textarea" v-model="form.reason" placeholder="请详细描述目前的状况及申请资助的理由 (不少于50字)" :rows="6" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -78,7 +78,7 @@ const loadData = () => {
 
 const openApplyDialog = () => {
   if (!userInfo.value.major || !userInfo.value.className) {
-    ElMessage.warning('您的学籍信息尚未完善，无法申请')
+    ElMessage.warning('您的学籍信息尚未完善，无法申请！')
     return
   }
   form.value = {
@@ -93,11 +93,11 @@ const openApplyDialog = () => {
 
 const submitApply = () => {
   if (!form.value.reason || form.value.reason.length < 10) {
-    ElMessage.warning('请认真填写申请理由')
+    ElMessage.warning('请认真填写申请理由！')
     return
   }
   request.post('/aid/apply', form.value).then(res => {
-    ElMessage.success(res.msg)
+    ElMessage.success('困难资助已申请！')
     dialogVisible.value = false
     loadData()
   })
@@ -106,7 +106,7 @@ const submitApply = () => {
 const handleCancel = (id) => {
   ElMessageBox.confirm('撤销后需重新排队审批，确认撤销吗？', '提示', { type: 'warning' }).then(() => {
     request.delete(`/aid/${id}`).then(res => {
-      ElMessage.success('撤销成功')
+      ElMessage.success('撤销成功！')
       loadData()
     })
   })

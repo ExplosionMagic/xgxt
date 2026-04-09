@@ -34,13 +34,13 @@ public class HonorApplication {
     @ColumnWidth(40)
     private String reason;
 
-    @ExcelProperty("状态 (0待初审 1驳回 2待终审 3终审驳回 4通过)")
+    @ExcelProperty("状态 (0待初审 1驳回 2待复审 3复审驳回 4通过)")
     private Integer status;
 
-    @ExcelProperty("初审人")
+    @ExcelProperty("初审处理人")
     private String teacherApprover;
 
-    @ExcelProperty("终审人")
+    @ExcelProperty("复审处理人")
     private String adminApprover;
 
     @ExcelProperty("申请时间")

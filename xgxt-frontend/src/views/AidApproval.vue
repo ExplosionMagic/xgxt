@@ -32,7 +32,7 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog v-model="detailVisible" title="资助申请详情阅读" width="650px">
+    <el-dialog v-model="detailVisible" title="资助申请" width="650px">
       <div v-if="currentAid">
         <el-descriptions :column="2" border style="margin-bottom: 20px;">
           <el-descriptions-item label="姓名">{{ currentAid.studentName }}</el-descriptions-item>
@@ -43,7 +43,7 @@
         </el-descriptions>
 
         <div style="border: 1px solid #EBEEF5; padding: 15px; border-radius: 4px; background-color: #fcfcfc;">
-          <div style="font-weight: bold; margin-bottom: 10px; color: #303133;">家庭情况及申请理由说明：</div>
+          <div style="font-weight: bold; margin-bottom: 10px; color: #303133;">个人当前状况及申请理由：</div>
           <div style="line-height: 1.8; color: #606266; font-size: 14px; white-space: pre-wrap;">{{ currentAid.reason }}</div>
         </div>
       </div>
@@ -106,8 +106,8 @@ const handleTeacherAudit = (row, newStatus) => {
 }
 
 const handleAdminAudit = (row, newStatus) => {
-  const actionText = newStatus === 4 ? '终审同意并列入资助名单' : '驳回'
-  ElMessageBox.confirm(`确定要${actionText}吗？`, '终审确认', { type: newStatus === 4 ? 'success' : 'warning' }).then(() => {
+  const actionText = newStatus === 4 ? '复审同意并列入资助名单' : '驳回'
+  ElMessageBox.confirm(`确定要${actionText}吗？`, '复审确认', { type: newStatus === 4 ? 'success' : 'warning' }).then(() => {
     request.put('/aid/audit/admin', {
       id: row.id,
       status: newStatus,

@@ -75,7 +75,7 @@ public class HonorController {
     @PutMapping("/audit/admin")
     public Result<?> adminAudit(@RequestBody HonorApplication honor) {
         honorService.updateById(honor);
-        return Result.success(honor.getStatus() == 4 ? "终审通过" : "已驳回申请");
+        return Result.success(honor.getStatus() == 4 ? "复审通过" : "已驳回申请");
     }
 
     @DeleteMapping("/{id}")

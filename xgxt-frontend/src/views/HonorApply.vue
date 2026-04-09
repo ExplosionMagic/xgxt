@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin-bottom: 20px;">
-      <el-alert title="荣誉奖项申请需经过【初审】与【终审】两级审批，请如实填写。" type="success" show-icon style="margin-bottom: 15px;" />
+      <el-alert title="荣誉奖项申请需经过【初审】与【复审】多级审批，请如实填写相关信息。" type="success" show-icon style="margin-bottom: 15px;" />
       <el-button type="primary" @click="openApplyDialog">申请荣誉奖项</el-button>
       <el-button type="success" @click="loadData">刷新状态</el-button>
     </div>
@@ -9,14 +9,14 @@
     <el-table :data="tableData" border stripe size="large" :header-cell-style="{ background: '#f8f9fa', color: '#606266', fontWeight: 'bold' }">
       <el-table-column prop="applyTime" label="申请时间" width="160" />
       <el-table-column prop="honorName" label="申请奖项" width="180" />
-      <el-table-column prop="reason" label="主要事迹说明" min-width="200" show-overflow-tooltip />
+      <el-table-column prop="reason" label="主要事迹" min-width="200" show-overflow-tooltip />
       <el-table-column label="当前进度" width="160" align="center">
         <template #default="scope">
           <span v-if="scope.row.status === 0">待初审</span>
           <span v-else-if="scope.row.status === 1">初审驳回</span>
-          <span v-else-if="scope.row.status === 2">初审同意待终审</span>
-          <span v-else-if="scope.row.status === 3">终审驳回</span>
-          <span v-else-if="scope.row.status === 4">已同意</span>
+          <span v-else-if="scope.row.status === 2">初审通过待复审</span>
+          <span v-else-if="scope.row.status === 3">复审驳回</span>
+          <span v-else-if="scope.row.status === 4">复审通过</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="100" align="center">
@@ -39,7 +39,7 @@
         </el-form-item>
 
         <el-form-item label="主要事迹" required>
-          <el-input type="textarea" v-model="form.reason" placeholder="请详细描述申请该奖项的理由及个人事迹 (建议详细客观叙述)" :rows="6" />
+          <el-input type="textarea" v-model="form.reason" placeholder="请详细描述申请该奖项的理由及个人事迹" :rows="6" />
         </el-form-item>
       </el-form>
       <template #footer>

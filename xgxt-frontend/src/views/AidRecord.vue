@@ -5,9 +5,9 @@
       <el-select v-model="searchStatus" placeholder="所有审批状态" clearable style="width: 160px;">
         <el-option label="待初审" :value="0" />
         <el-option label="初审驳回" :value="1" />
-        <el-option label="初审通过待终审" :value="2" />
-        <el-option label="终审驳回" :value="3" />
-        <el-option label="终审通过" :value="4" />
+        <el-option label="初审通过待复审" :value="2" />
+        <el-option label="复审驳回" :value="3" />
+        <el-option label="复审通过" :value="4" />
       </el-select>
       <el-button type="primary" @click="loadData">查询档案</el-button>
       <el-button type="warning" @click="exportData" v-if="user.role !== 'STUDENT'">导出报表</el-button>
@@ -30,9 +30,9 @@
         <template #default="scope">
           <span v-if="scope.row.status === 0">待初审</span>
           <span v-else-if="scope.row.status === 1">初审驳回</span>
-          <span v-else-if="scope.row.status === 2">初审同意待终审</span>
-          <span v-else-if="scope.row.status === 3">终审驳回</span>
-          <span v-else-if="scope.row.status === 4">已同意</span>
+          <span v-else-if="scope.row.status === 2">初审同意待复审</span>
+          <span v-else-if="scope.row.status === 3">复审驳回</span>
+          <span v-else-if="scope.row.status === 4">复审通过</span>
         </template>
       </el-table-column>
 
@@ -43,7 +43,7 @@
               <span>初审：{{ scope.row.teacherApprover || '等待处理' }}</span>
             </div>
             <div style="display: flex; align-items: center;">
-              <span>终审：{{ scope.row.adminApprover || '等待处理' }}</span>
+              <span>复审：{{ scope.row.adminApprover || '等待处理' }}</span>
             </div>
           </div>
         </template>
@@ -67,7 +67,7 @@
         </el-descriptions>
 
         <div style="border: 1px solid #EBEEF5; padding: 18px; border-radius: 6px; background-color: #fcfcfc;">
-          <div style="font-weight: bold; margin-bottom: 12px; color: #303133; font-size: 15px;">家庭情况及申请理由说明：</div>
+          <div style="font-weight: bold; margin-bottom: 12px; color: #303133; font-size: 15px;">个人当前状况及申请理由：</div>
           <div style="line-height: 1.8; color: #606266; font-size: 15px; white-space: pre-wrap;">{{ currentAid.reason }}</div>
         </div>
       </div>
@@ -138,7 +138,7 @@ const exportData = async () => {
     const contentType = response.headers.get('content-type')
     if (contentType && contentType.includes('application/json')) {
       const errorData = await response.json()
-      ElMessage.error(errorData.msg || '导出失败，后端拒绝访问')
+      ElMessage.error('导出失败，后端拒绝访问')
       return
     }
 
@@ -149,7 +149,7 @@ const exportData = async () => {
     const url = window.URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = '学生资助申请报表.xlsx' // 导出的文件名
+    link.download = '学生资助申请记录表.xlsx' // 导出的文件名
     document.body.appendChild(link)
     link.click()
 

@@ -18,19 +18,17 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog v-model="detailVisible" title="申请详情" width="650px" top="10vh">
+    <el-dialog v-model="detailVisible" title="荣誉奖项申请" width="650px" top="10vh">
       <div v-if="currentHonor">
         <el-descriptions :column="2" border style="margin-bottom: 20px;">
           <el-descriptions-item label="姓名">{{ currentHonor.studentName }}</el-descriptions-item>
           <el-descriptions-item label="学号">{{ currentHonor.studentNo }}</el-descriptions-item>
           <el-descriptions-item label="专业班级" :span="2">{{ currentHonor.majorName }} - {{ currentHonor.className }}</el-descriptions-item>
-          <el-descriptions-item label="申请荣誉奖项" :span="2">
-            <span style="font-weight: bold; color: #E6A23C;">{{ currentHonor.honorName }}</span>
-          </el-descriptions-item>
+          <el-descriptions-item label="申请荣誉奖项" :span="2"><span>{{ currentHonor.honorName }}</span></el-descriptions-item>
         </el-descriptions>
 
         <div style="border: 1px solid #EBEEF5; padding: 18px; border-radius: 6px; background-color: #fcfcfc;">
-          <div style="font-weight: bold; margin-bottom: 12px; font-size: 15px;">主要事迹说明：</div>
+          <div style="font-weight: bold; margin-bottom: 12px; font-size: 15px;">主要事迹：</div>
           <div style="line-height: 1.8; color: #606266; font-size: 15px; white-space: pre-wrap;">{{ currentHonor.reason }}</div>
         </div>
       </div>

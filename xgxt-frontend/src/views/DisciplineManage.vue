@@ -65,8 +65,8 @@
       </el-table>
     </div>
 
-    <el-dialog v-model="reportDialogVisible" title="填写违纪行为上报单" width="550px">
-      <el-alert title="输入学号后，系统会自动匹配该学生信息。" type="info" show-icon style="margin-bottom: 15px;" />
+    <el-dialog v-model="reportDialogVisible" title="学生违纪行为上报" width="550px">
+      <el-alert title="输入学号后，系统会自动获取该学生信息。" type="info" show-icon style="margin-bottom: 15px;" />
 
       <el-form :model="form" label-width="90px">
         <el-form-item label="违纪学号" required>
@@ -99,7 +99,7 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="detailVisible" title="违纪案件档案" width="650px" top="10vh" @closed="auditPunishment = ''">
+    <el-dialog v-model="detailVisible" title="学生违纪行为档案" width="650px" top="10vh" @closed="auditPunishment = ''">
       <div v-if="currentRecord">
         <el-descriptions :column="2" border style="margin-bottom: 20px;">
           <el-descriptions-item label="姓名">{{ currentRecord.studentName }}</el-descriptions-item>
