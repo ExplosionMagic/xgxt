@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/xgxt-backend/xgxt.iml" filepath="$PROJECT_DIR$/xgxt-backend/xgxt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xgxt-frontend/xgxt-frontend.iml" filepath="$PROJECT_DIR$/xgxt-frontend/xgxt-frontend.iml" />
     </modules>
   </component>
 </project>

@@ -22,8 +22,7 @@ public class CourseController {
     @Autowired
     private com.zjy.xgxt.service.UserService userService;
 
-    // 获取所有课程 (支持按课程名模糊搜索)
-// 获取课程列表 (支持按课程名、专业名模糊/精确搜索)
+    // 获取课程表
     @GetMapping("/list")
     public Result<List<Course>> list(@RequestParam(required = false) String courseName,
                                      @RequestParam(required = false) String majorName) {
@@ -66,6 +65,7 @@ public class CourseController {
         return Result.success("删除成功");
     }
 
+    // 查询课程
     @GetMapping("/search")
     public Result<List<Course>> searchCourses(
             @RequestParam(required = false) String nature,
@@ -87,9 +87,8 @@ public class CourseController {
         wrapper.orderByAsc(Course::getDayOfWeek).orderByAsc(Course::getSection);
         return Result.success(courseService.list(wrapper));
     }
-    /**
-     * 获取个人专属课表数据 (学生查已选的课，老师查自己教的课)
-     */
+
+    // 获取课程数据生成个人课表（学生查询选课，老师查询授课）
     @GetMapping("/timetable")
     public Result<List<Course>> getTimetable(@RequestParam String userNo, @RequestParam String role) {
         if ("STUDENT".equals(role)) {
