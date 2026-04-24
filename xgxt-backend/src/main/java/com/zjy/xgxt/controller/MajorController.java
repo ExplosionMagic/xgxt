@@ -34,7 +34,7 @@ public class MajorController {
     @GetMapping("/list")
     public Result<List<Major>> list(
             @RequestParam(required = false) String majorName,
-            @RequestParam(required = false) String collegeName) { // 【新增】按学院筛选
+            @RequestParam(required = false) String collegeName) { // 按学院筛选
 
         LambdaQueryWrapper<Major> wrapper = new LambdaQueryWrapper<>();
 
@@ -42,7 +42,7 @@ public class MajorController {
             wrapper.like(Major::getMajorName, majorName);
         }
         if (StringUtils.hasText(collegeName)) {
-            wrapper.eq(Major::getCollegeName, collegeName); // 【新增】学院精准匹配
+            wrapper.eq(Major::getCollegeName, collegeName); // 学院精准匹配
         }
 
         wrapper.orderByDesc(Major::getId);

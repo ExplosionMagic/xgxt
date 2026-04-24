@@ -52,7 +52,7 @@
             <table class="timetable">
               <thead>
               <tr>
-                <th style="width: 12%;">节次 \ 星期</th>
+                <th style="width: 12%;">节次 / 星期</th>
                 <th v-for="day in weekDays" :key="day">{{ day }}</th>
               </tr>
               </thead>

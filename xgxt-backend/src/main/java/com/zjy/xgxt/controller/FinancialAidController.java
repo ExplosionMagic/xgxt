@@ -31,7 +31,7 @@ public class FinancialAidController {
             @RequestParam String role,
             @RequestParam(required = false) String studentNo,
             @RequestParam(required = false) Integer status,
-            @RequestParam(required = false) String keyword) { // 【新增】关键字搜索
+            @RequestParam(required = false) String keyword) { // 关键字搜索
 
         LambdaQueryWrapper<FinancialAid> wrapper = new LambdaQueryWrapper<>();
 
@@ -43,7 +43,7 @@ public class FinancialAidController {
             if (status != null) {
                 wrapper.eq(FinancialAid::getStatus, status);
             }
-            // 【新增】支持按姓名或学号模糊搜索
+            // 支持按姓名或学号模糊搜索
             if (org.springframework.util.StringUtils.hasText(keyword)) {
                 wrapper.and(w -> w.like(FinancialAid::getStudentName, keyword)
                         .or()

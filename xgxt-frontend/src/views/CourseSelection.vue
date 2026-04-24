@@ -8,7 +8,7 @@
         <table class="timetable">
           <thead>
           <tr>
-            <th style="width: 10%;">节次 \ 星期</th>
+            <th style="width: 10%;">节次 / 星期</th>
             <th v-for="day in weekDays" :key="day">{{ day }}</th>
           </tr>
           </thead>
@@ -121,7 +121,7 @@
         <table class="timetable">
           <thead>
           <tr>
-            <th style="width: 10%;">节次 \ 星期</th>
+            <th style="width: 10%;">节次 / 星期</th>
             <th v-for="day in weekDays" :key="day">{{ day }}</th>
           </tr>
           </thead>
@@ -230,7 +230,7 @@ const handleRecommendSelect = (course) => {
 
 // 退课
 const handleDropCourse = (id) => {
-  ElMessageBox.confirm('确定要退选这门课吗？', '确认退课', { type: 'warning', confirmButtonText: '确定退课', cancelButtonText: '取消' }).then(() => {
+  ElMessageBox.confirm('确定要退选这门课吗？', '确认退课', { type: 'warning', confirmButtonText: '退课', cancelButtonText: '取消' }).then(() => {
     request.delete(`/score/${id}`).then(res => {
       if (res.code === 200) {
         ElMessage.success('退课成功')

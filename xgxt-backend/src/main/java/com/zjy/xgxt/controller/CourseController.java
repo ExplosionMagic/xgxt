@@ -31,7 +31,7 @@ public class CourseController {
         if (StringUtils.hasText(courseName)) {
             wrapper.like(Course::getCourseName, courseName);
         }
-        // 新增：按专业筛选课程
+        // 按专业筛选课程
         if (StringUtils.hasText(majorName)) {
             wrapper.eq(Course::getMajorName, majorName);
         }

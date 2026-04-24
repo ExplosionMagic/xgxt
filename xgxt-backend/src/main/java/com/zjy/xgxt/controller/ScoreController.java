@@ -66,7 +66,7 @@ public class ScoreController {
             return Result.error("您已选修过该课程，无需重复选择");
         }
 
-        // 3. 【新增】上课时间冲突校验
+        // 3.上课时间冲突校验
         // 3.1 查出该学生目前已经选上的所有课程的成绩/选课记录
         List<Score> myScores = scoreService.list(
                 new LambdaQueryWrapper<Score>().eq(Score::getStudentNo, score.getStudentNo())
@@ -93,7 +93,7 @@ public class ScoreController {
             }
         }
 
-        // 4. 核心：原子化更新已选人数 (容量控制防超卖)
+        // 4. 原子化更新已选人数 (容量控制防超卖)
         boolean updateSuccess = courseService.update(
                 new LambdaUpdateWrapper<Course>()
                         .eq(Course::getId, score.getCourseId())
@@ -105,7 +105,7 @@ public class ScoreController {
             return Result.error("该课程无剩余容量！");
         }
 
-        // 5. 生成选课记录，状态直接设为 1 (已通过)
+        // 5. 生成选课记录，状态直接设为1（已通过）
         score.setStatus(1);
         scoreService.save(score);
 

@@ -84,7 +84,7 @@ const loadData = () => {
   })
 }
 
-// 【新增】打开详情弹窗
+// 打开详情弹窗
 const openDetail = (row) => {
   currentAid.value = row
   detailVisible.value = true

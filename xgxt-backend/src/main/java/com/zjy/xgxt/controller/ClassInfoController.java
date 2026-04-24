@@ -1,12 +1,12 @@
 package com.zjy.xgxt.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper; // 【新增】用于更新数据
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.zjy.xgxt.common.Result;
 import com.zjy.xgxt.entity.ClassInfo;
-import com.zjy.xgxt.entity.User; // 【新增】引入 User 实体
+import com.zjy.xgxt.entity.User;
 import com.zjy.xgxt.service.ClassInfoService;
-import com.zjy.xgxt.service.UserService; // 【新增】引入 UserService
+import com.zjy.xgxt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class ClassInfoController {
     private ClassInfoService classInfoService;
 
     @Autowired
-    private UserService userService; // 【新增】注入 UserService 用于同步更新学生数据
+    private UserService userService; // 注入 UserService 用于同步更新学生数据
 
     /**
      * 获取所有班级列表 (支持按班级名或专业名模糊搜索)

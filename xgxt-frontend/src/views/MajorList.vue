@@ -74,7 +74,7 @@ const loadData = () => {
   })
 }
 
-// 【新增】获取字典数据：加载所有学院，供下拉框使用
+// 获取字典数据：加载所有学院，供下拉框使用
 const loadDicts = () => {
   request.get('/college/list').then(res => {
     collegeList.value = res.data
